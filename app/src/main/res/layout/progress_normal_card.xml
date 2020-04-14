@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/card_view_margin"
+    android:visibility="visible"
+    app:cardCornerRadius="@dimen/card_view_radius"
+    app:contentPadding="@dimen/card_view_content_padding">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/text_view_progress_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/string_placeholder"
+            android:textSize="24sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/text_view_progress_level"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="64dp"
+            android:layout_marginBottom="32dp"
+            android:text="@string/int_place_holder"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/icon_progress_level"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.7" />
+
+        <TextView
+            android:id="@+id/text_view_progress_streak"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/int_place_holder"
+            app:layout_constraintStart_toEndOf="@+id/icon_progress_streak"
+            app:layout_constraintTop_toTopOf="@+id/text_view_progress_level" />
+
+        <CheckBox
+            android:id="@+id/check_box_progress_complete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleX="@dimen/card_checkbox_scale"
+            android:scaleY="@dimen/card_checkbox_scale"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.94"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/icon_progress_level"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="64dp"
+            android:layout_marginBottom="24dp"
+            android:scaleX="@dimen/card_view_streak_icon_scale"
+            android:scaleY="@dimen/card_view_streak_icon_scale"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@android:drawable/ic_menu_compass" />
+
+        <ImageView
+            android:id="@+id/icon_progress_streak"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleX="@dimen/card_view_streak_icon_scale"
+            android:scaleY="@dimen/card_view_streak_icon_scale"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.3"
+            app:layout_constraintStart_toStartOf="@+id/icon_progress_level"
+            app:layout_constraintTop_toTopOf="@+id/icon_progress_level"
+            app:srcCompat="@android:drawable/ic_menu_compass" />
+
+        <ImageView
+            android:id="@+id/icon_progress_completed_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleX="@dimen/card_view_streak_icon_scale"
+            android:scaleY="@dimen/card_view_streak_icon_scale"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.6"
+            app:layout_constraintStart_toStartOf="@+id/icon_progress_level"
+            app:layout_constraintTop_toTopOf="@+id/icon_progress_level"
+            app:srcCompat="@android:drawable/ic_menu_compass" />
+
+        <TextView
+            android:id="@+id/text_view_progress_completed_ratio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/string_ratio_place_holder"
+            app:layout_constraintStart_toEndOf="@+id/icon_progress_completed_icon"
+            app:layout_constraintTop_toTopOf="@+id/text_view_progress_level" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

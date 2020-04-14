@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">Demo</string>
+    <string name="action_settings">Settings</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">0</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+
+    <string name="plus_btn_text">Plus</string>
+    <string name="minus_btn_text">Minus</string>
+    <string name="random_btn_text">Generate</string>
+
+    <string name="int_range_text">%d ~ %d</string>
+    <string name="int_init_text">0</string>
+    <string name="string_placeholder">%s</string>
+    <string name="int_place_holder">%d</string>
+    <string name="string_ratio_place_holder">%s / %s</string>
+</resources>

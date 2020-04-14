@@ -1,0 +1,9 @@
+<resources>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="card_view_content_padding">5dp</dimen>
+    <dimen name="card_view_margin">5dp</dimen>
+    <dimen name="card_view_radius">5dp</dimen>
+    <dimen name="card_checkbox_scale">1.25</dimen>
+    <dimen name="recycler_view_progress_view_margin">5dp</dimen>
+    <item name="card_view_streak_icon_scale" type="dimen" format="float">0.75</item>
+</resources>
