@@ -43,7 +43,7 @@ class FirstFragment : Fragment() {
     }
 
     private fun addProgress(progressList: MutableList<Progress>){
-        var progress = Progress("Test Progress", false)
+        var progress = Progress("Test Progress", false )
         for (i in 1..10) {
             progressList.add(progress)
         }

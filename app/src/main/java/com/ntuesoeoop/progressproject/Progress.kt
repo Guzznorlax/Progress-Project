@@ -3,34 +3,56 @@ package com.ntuesoeoop.progressproject
 import kotlin.math.max
 
 class Progress {
-    private var name: String
+    private var id: Int  // ID
+    private var name: String  // 名稱
+    private var description: String  // 說明
 
-    private var level: Int
+    private var level: Int  // 等級
+    private var exp: Float // 累積分數  TODO 決定計分方式
 
-    private var streak: Int
-    private var maxStreak: Int
+    private var streak: Int  // 連續達成週期數
+    private var maxStreak: Int // 最高連續達成週期數
 
-    private var isCompleted: Boolean
-    private var totalCompleted: Int
-    private var targetCompleted: Int
+    private var isCompleted: Boolean // 今日是否達成
+    private var totalCompleted: Int // 總共達成數
 
-    private var useTargetNum: Boolean
-    private var targetNum: Float
-    private var currentNum: Float
+    private var period: Int  // 週期
+    private var passedPeriod: Int  // 經過週期
+    private var currentCompleted: Int  // 目前達成日數（本週期間）
+    private var targetCompleted: Int  // 目標達成日數 （週期內應完成天數）
 
-    private var count: Float
-    private var targetCount: Float
+    private var useTargetNum: Boolean  // 是否紀錄數字
+    private var targetNum: Float  // 目標數量
+    private var currentNum: Float  // 目前數量
 
-    private var isEnded: Boolean
+    private var count: Float  // 總共數量
+    private var targetCount: Float  // 總共應達成數量 -> targetNum * passedPeriod * passedPeriod
+
+    private var isEnded: Boolean // 是否結束紀錄
 
 
-    constructor(name: String, useTargetNum: Boolean, targetNum: Float = 0f) {
+    constructor(
+        name: String,
+        period: Int = 1,
+        useTargetNum: Boolean = false,
+        targetNum: Float = 0f,
+        description: String = "",
+        id: Int = 0
+    ) {
+        this.id = id
         this.name = name
 
+        this.description = description
+
         this.level = 0
+        this.exp = 0f
 
         this.streak = 0
         this.maxStreak = 0
+
+        this.period = period
+        this.passedPeriod = 0
+        this.currentCompleted = 0
 
         this.isCompleted = false
         this.totalCompleted = 0
@@ -46,12 +68,24 @@ class Progress {
 
     }
 
+    public fun getId(): Int {
+        return this.id
+    }
+
     public fun getName(): String {
         return this.name
     }
 
     public fun setName(name: String) {
         this.name = name
+    }
+
+    public fun setDescription(description: String) {
+        this.description = description
+    }
+
+    public fun getDescription(): String {
+        return this.description
     }
 
     public fun getStreak(): Int {
@@ -120,7 +154,7 @@ class Progress {
         return this.targetCompleted
     }
 
-    public fun getCompletedRatio(): String{
+    public fun getCompletedRatio(): String {
         return "{${this.totalCompleted} / ${this.targetCompleted}}"
     }
 
