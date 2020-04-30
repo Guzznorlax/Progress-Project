@@ -19,4 +19,14 @@
     <string name="string_placeholder">%s</string>
     <string name="int_place_holder">%d</string>
     <string name="string_ratio_place_holder">%s / %s</string>
+    <string name="text_input_title_hint">Title</string>
+    <string name="text_input_description_hint">Description</string>
+    <string name="text_view_period_default">"Period: "</string>
+    <string name="text_view_target_complete_days">Target Complete Day(s): </string>
+    <string name="text_view_target_number">"Target Number: "</string>
+    <string name="text_view_use_number_target">Number Mode  </string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="button_create_progress">Create</string>
 </resources>
