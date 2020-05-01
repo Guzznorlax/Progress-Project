@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 
 class ProgressListAdapter : RecyclerView.Adapter<ProgressListAdapter.ViewHolder> {
     private var context: Context
-    private var progressList: MutableList<Progress>
+    var progressList: MutableList<Progress>
 
     constructor(context: Context, progressList: MutableList<Progress>) : super() {
         this.context = context
@@ -41,6 +41,16 @@ class ProgressListAdapter : RecyclerView.Adapter<ProgressListAdapter.ViewHolder>
         holder.levelTextView.text = progress.getLevel().toString()
         holder.streakTextView.text = progress.getStreak().toString()
         holder.countTextView.text = progress.getCompletedRatio()
+    }
+
+    public fun addProgress(progress: Progress){
+        progressList.add(progress)
+        updateContent()
+    }
+
+
+    public fun updateContent() {
+
     }
 
     class ViewHolder : RecyclerView.ViewHolder {

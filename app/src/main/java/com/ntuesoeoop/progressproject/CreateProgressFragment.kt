@@ -1,12 +1,15 @@
 package com.ntuesoeoop.progressproject
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.textfield.TextInputEditText
+import com.google.android.material.textfield.TextInputLayout
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -22,6 +25,7 @@ class CreateProgressFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,8 +45,28 @@ class CreateProgressFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        
+
         view.findViewById<Button>(R.id.button_create_progress).setOnClickListener {
+
+            var titleTextInputLayout =
+                view.findViewById<TextInputEditText>(R.id.text_input_progress_title)
+
+            var descriptionTextInputLayout =
+                view.findViewById<TextInputEditText>(R.id.text_input_progress_description)
+
+            var titleText = titleTextInputLayout?.text.toString()
+            var descriptionText = descriptionTextInputLayout?.text.toString()
+
+
+//            println(titleText)
+//            println(descriptionText)
+
+            
+
+            findNavController().navigate(R.id.action_createProgressFragment_to_FirstFragment)
+        }
+
+        view.findViewById<Button>(R.id.button_cancel_create_progress).setOnClickListener {
             findNavController().navigate(R.id.action_createProgressFragment_to_FirstFragment)
         }
     }
