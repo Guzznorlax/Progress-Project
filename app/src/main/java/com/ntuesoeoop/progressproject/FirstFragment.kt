@@ -39,9 +39,6 @@ class FirstFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-//        view.findViewById<Button>(R.id.button_first).setOnClickListener {
-//            findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
-//        }
         view.findViewById<FloatingActionButton>(R.id.floating_btn_create_progress).setOnClickListener {
             findNavController().navigate(R.id.action_FirstFragment_to_createProgressFragment)
         }
@@ -53,6 +50,4 @@ class FirstFragment : Fragment() {
             progressList.add(progress)
         }
     }
-
-
 }

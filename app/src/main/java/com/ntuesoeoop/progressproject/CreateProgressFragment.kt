@@ -10,6 +10,7 @@ import android.widget.Button
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
+import kotlinx.android.synthetic.main.fragment_first.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -57,11 +58,9 @@ class CreateProgressFragment : Fragment() {
             var titleText = titleTextInputLayout?.text.toString()
             var descriptionText = descriptionTextInputLayout?.text.toString()
 
+            var newProgress = Progress(name = titleText, description = descriptionText)
 
-//            println(titleText)
-//            println(descriptionText)
 
-            
 
             findNavController().navigate(R.id.action_createProgressFragment_to_FirstFragment)
         }
