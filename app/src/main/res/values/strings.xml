@@ -41,5 +41,13 @@
     <string name="text_targetnum_place_holder">targetnum</string>
     <string name="text_currentnum_place_holder">currentnum</string>
     <string name="text_count_place_holder">count</string>
-    <string name="text_targetnum_place_holder">targetnum</string>
+    <string name="username_place_holder">username</string>
+    <string name="test_iscompleted_place_holder">iscompleted</string>
+    <string name="test_totalcompleted_place_holder">totalcompleted</string>
+    <string name="viplevel_place_holder">viplevel</string>
+    <string name="text_targetcount_place_holder">targetcount</string>
+    <string name="retrun_place_holder">return</string>
+    <string name="button_return">return</string>
+
+    <string name="nav_header_desc">Navigation header</string>
 </resources>

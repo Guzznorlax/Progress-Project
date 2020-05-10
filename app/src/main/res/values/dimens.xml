@@ -9,4 +9,9 @@
     <dimen name="text_input_description_width">250dp</dimen>
     <dimen name="number_input_width">30dp</dimen>
     <item name="card_view_streak_icon_scale" type="dimen" format="float">0.75</item>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="nav_header_vertical_spacing">8dp</dimen>
+    <dimen name="nav_header_height">176dp</dimen>
 </resources>
