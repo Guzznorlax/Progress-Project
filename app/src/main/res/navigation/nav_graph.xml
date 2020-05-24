@@ -17,6 +17,9 @@
         <action
             android:id="@+id/action_FirstFragment_to_createProgressFragment"
             app:destination="@id/createProgressFragment" />
+        <action
+            android:id="@+id/action_FirstFragment_to_progress_view"
+            app:destination="@id/progress_view" />
     </fragment>
     <fragment
         android:id="@+id/SecondFragment"
@@ -35,6 +38,15 @@
         tools:layout="@layout/fragment_create_progress" >
         <action
             android:id="@+id/action_createProgressFragment_to_FirstFragment"
+            app:destination="@id/FirstFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/progress_view"
+        android:name="com.ntuesoeoop.progressproject.ViewFragment"
+        android:label="progress_view"
+        tools:layout="@layout/progress_view" >
+        <action
+            android:id="@+id/action_progress_view_to_FirstFragment"
             app:destination="@id/FirstFragment" />
     </fragment>
 

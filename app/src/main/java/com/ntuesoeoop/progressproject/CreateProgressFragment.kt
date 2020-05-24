@@ -66,4 +66,6 @@ class CreateProgressFragment : Fragment() {
                 }
             }
     }
+
+
 }

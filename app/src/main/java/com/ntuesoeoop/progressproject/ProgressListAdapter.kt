@@ -51,4 +51,5 @@ class ProgressListAdapter : RecyclerView.Adapter<ProgressListAdapter.ViewHolder>
 
         constructor(itemView: View) : super(itemView)
     }
+
 }

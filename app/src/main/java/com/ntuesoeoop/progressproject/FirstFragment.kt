@@ -5,10 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.android.synthetic.main.fragment_first.*
 
@@ -17,6 +15,7 @@ import kotlinx.android.synthetic.main.fragment_first.*
  */
 class FirstFragment : Fragment() {
     var progressList: MutableList<Progress> = mutableListOf()
+
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
@@ -39,9 +38,6 @@ class FirstFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-//        view.findViewById<Button>(R.id.button_first).setOnClickListener {
-//            findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
-//        }
         view.findViewById<FloatingActionButton>(R.id.floating_btn_create_progress).setOnClickListener {
             findNavController().navigate(R.id.action_FirstFragment_to_createProgressFragment)
         }
@@ -49,10 +45,9 @@ class FirstFragment : Fragment() {
 
     private fun addProgress(progressList: MutableList<Progress>) {
         var progress = Progress("Test Progress")
-        for (i in 1..10) {
+        for (i in 1..3) {
             progressList.add(progress)
         }
     }
-
 
 }

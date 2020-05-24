@@ -50,4 +50,5 @@
     <string name="button_return">return</string>
 
     <string name="nav_header_desc">Navigation header</string>
+    <string name="my_content_place_holder">my_content</string>
 </resources>
