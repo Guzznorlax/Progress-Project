@@ -50,5 +50,7 @@
     <string name="button_return">return</string>
 
     <string name="nav_header_desc">Navigation header</string>
-    <string name="my_content_place_holder">my_content</string>
+    <string name="text_cancel">Cancel</string>
+    <string name="my_view">btn_my_view</string>
+    <string name="mycontent">mycontent</string>
 </resources>
