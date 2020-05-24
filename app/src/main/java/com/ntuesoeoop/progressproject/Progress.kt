@@ -1,19 +1,36 @@
 package com.ntuesoeoop.progressproject
 
+import androidx.annotation.NonNull
+import androidx.room.Entity
+import androidx.room.Ignore
+import androidx.room.PrimaryKey
 import kotlin.math.max
 
+@Entity(tableName = Progress.TABLE_NAME)
 class Progress {
+
+    companion object {
+        const val TABLE_NAME = "progress"
+    }
+
+    @PrimaryKey(autoGenerate = true)
     private var id: Int  // ID
+
+    @NonNull
     private var name: String  // 名稱
+
     private var description: String  // 說明
 
     private var level: Int  // 等級
+
     private var exp: Float // 累積分數  TODO 決定計分方式
 
     private var streak: Int  // 連續達成週期數
+
     private var maxStreak: Int // 最高連續達成週期數
 
     private var isCompleted: Boolean // 今日是否達成
+
     private var totalCompleted: Int // 總共達成數
 
     private var period: Int  // 週期
@@ -28,6 +45,7 @@ class Progress {
     private var count: Float  // 總共數量
     private var targetCount: Float  // 總共應達成數量 -> targetNum * passedPeriod * passedPeriod
 
+    @Ignore
     private var isEnded: Boolean // 是否結束紀錄
 
 
@@ -76,6 +94,34 @@ class Progress {
         return this.name
     }
 
+    public fun getExp(): Float {
+        return this.exp
+    }
+
+    public fun setExp(exp: Float){
+        this.exp = exp
+    }
+
+    public fun getPeriod(): Int {
+        return this.period
+    }
+
+    public fun getPassedPeriod(): Int {
+        return this.passedPeriod
+    }
+
+    public fun setPassedPeriod(passedPeriod: Int){
+        this.passedPeriod = passedPeriod
+    }
+
+    public fun getCurrentCompleted(): Int {
+        return this.currentCompleted
+    }
+
+    public fun setCurrentCompleted(currentCompleted: Int){
+        this.currentCompleted = currentCompleted
+    }
+
     public fun setName(name: String) {
         this.name = name
     }
@@ -108,6 +154,10 @@ class Progress {
 
     public fun getMaxStreak(): Int {
         return this.maxStreak
+    }
+
+    public fun setMaxStreak(maxStreak: Int){
+        this.maxStreak = maxStreak
     }
 
     public fun updateMaxStreak() {
@@ -150,8 +200,16 @@ class Progress {
         return this.totalCompleted
     }
 
+    public fun setTotalCompleted(totalCompleted: Int){
+        this.totalCompleted = totalCompleted
+    }
+
     public fun getTargetCompleted(): Int {
         return this.targetCompleted
+    }
+
+    public fun setTargetCompleted(targetCompleted: Int){
+        this.targetCompleted = targetCompleted
     }
 
     public fun getCompletedRatio(): String {
