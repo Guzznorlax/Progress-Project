@@ -11,6 +11,8 @@ import androidx.navigation.fragment.findNavController
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import kotlinx.android.synthetic.main.fragment_first.*
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -60,7 +62,9 @@ class CreateProgressFragment : Fragment() {
 
             var newProgress = Progress(name = titleText, description = descriptionText)
 
-
+            GlobalScope.launch {
+                
+            }
 
             findNavController().navigate(R.id.action_createProgressFragment_to_FirstFragment)
         }

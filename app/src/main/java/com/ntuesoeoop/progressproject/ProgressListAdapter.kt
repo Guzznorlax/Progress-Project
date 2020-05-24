@@ -1,64 +1,49 @@
 package com.ntuesoeoop.progressproject
 
 import android.content.Context
+import android.provider.UserDictionary
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class ProgressListAdapter : RecyclerView.Adapter<ProgressListAdapter.ViewHolder> {
-    private var context: Context
-    var progressList: MutableList<Progress>
+class ProgressListAdapter internal constructor(context: Context) :
+    RecyclerView.Adapter<ProgressListAdapter.ProgressViewHolder>() {
+    private val inflater: LayoutInflater = LayoutInflater.from(context)
+    private var progresses = emptyList<Progress>()
 
-    constructor(context: Context, progressList: MutableList<Progress>) : super() {
-        this.context = context
-        this.progressList = progressList
+
+    inner class ProgressViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+
+        val titleTextView: TextView = itemView.findViewById(R.id.text_view_progress_title)
+        val levelTextView: TextView = itemView.findViewById(R.id.text_view_progress_level)
+        val streakTextView: TextView = itemView.findViewById(R.id.text_view_progress_streak)
+        val countTextView: TextView = itemView.findViewById(R.id.text_view_progress_completed_ratio)
+
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        var progressCard =
-            LayoutInflater.from(context).inflate(R.layout.progress_normal_card, parent, false)
-        var viewHolder = ViewHolder(progressCard)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProgressViewHolder {
+        var itemView = inflater.inflate(R.layout.progress_normal_card, parent, false)
 
-        viewHolder.titleTextView = progressCard.findViewById(R.id.text_view_progress_title)
-        viewHolder.levelTextView = progressCard.findViewById(R.id.text_view_progress_level)
-        viewHolder.streakTextView = progressCard.findViewById(R.id.text_view_progress_streak)
-        viewHolder.countTextView =
-            progressCard.findViewById(R.id.text_view_progress_completed_ratio)
+        return ProgressViewHolder(itemView)
+    }
 
-        return viewHolder
+    override fun onBindViewHolder(holder: ProgressViewHolder, position: Int) {
+        val current = progresses[position]
+
+        holder.titleTextView.text = current.getName()
+        holder.levelTextView.text = current.getLevel().toString()
+        holder.streakTextView.text = current.getStreak().toString()
+        holder.countTextView.text = current.getCompletedRatio()
     }
 
     override fun getItemCount(): Int {
-        return progressList.size
+        return progresses.size
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val progress = progressList[position]
-
-        holder.titleTextView.text = progress.getName()
-        holder.levelTextView.text = progress.getLevel().toString()
-        holder.streakTextView.text = progress.getStreak().toString()
-        holder.countTextView.text = progress.getCompletedRatio()
-    }
-
-    public fun addProgress(progress: Progress){
-        progressList.add(progress)
-        updateContent()
-    }
-
-
-    public fun updateContent() {
-
-    }
-
-    class ViewHolder : RecyclerView.ViewHolder {
-        lateinit var titleTextView: TextView
-        lateinit var levelTextView: TextView
-        lateinit var streakTextView: TextView
-        lateinit var countTextView: TextView
-
-        constructor(itemView: View) : super(itemView)
+    internal fun setProgress(progresses: List<Progress>) {
+        this.progresses = progresses
+        notifyDataSetChanged()
     }
 }
