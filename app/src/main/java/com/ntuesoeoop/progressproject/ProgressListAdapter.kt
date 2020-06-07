@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 
 class ProgressListAdapter internal constructor(context: Context) :
@@ -31,8 +32,19 @@ class ProgressListAdapter internal constructor(context: Context) :
 
     override fun onBindViewHolder(holder: ProgressViewHolder, position: Int) {
         val current = progresses[position]
+        var progressName = current.getName()
+        var progressDescription = current.getDescription()
 
-        holder.titleTextView.text = current.getName()
+        holder.itemView.setOnClickListener {
+            val action = FirstFragmentDirections.actionFirstFragmentToProgressView(
+                progressName,
+                progressDescription
+            )
+
+            it.findNavController().navigate(action)
+        }
+
+        holder.titleTextView.text = progressName
         holder.levelTextView.text = current.getLevel().toString()
         holder.streakTextView.text = current.getStreak().toString()
         holder.countTextView.text = current.getCompletedRatio()

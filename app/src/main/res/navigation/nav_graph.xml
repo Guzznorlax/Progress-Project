@@ -19,7 +19,16 @@
             app:destination="@id/createProgressFragment" />
         <action
             android:id="@+id/action_FirstFragment_to_progress_view"
-            app:destination="@id/progress_view" />
+            app:destination="@id/viewProgressFragment" />
+        <argument
+            android:name="progress_name"
+            app:argType="string"
+            android:defaultValue=" " />
+        <argument
+            android:name="progress_description"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue=" " />
     </fragment>
     <fragment
         android:id="@+id/SecondFragment"
@@ -38,16 +47,32 @@
         tools:layout="@layout/fragment_create_progress" >
         <action
             android:id="@+id/action_createProgressFragment_to_FirstFragment"
-            app:destination="@id/FirstFragment" />
+            app:destination="@id/FirstFragment" >
+            <argument
+                android:name="progress_name"
+                android:defaultValue='""' />
+            <argument
+                android:name="progress_description"
+                android:defaultValue='""' />
+        </action>
     </fragment>
     <fragment
-        android:id="@+id/progress_view"
+        android:id="@+id/viewProgressFragment"
         android:name="com.ntuesoeoop.progressproject.ViewFragment"
         android:label="progress_view"
         tools:layout="@layout/progress_view" >
         <action
             android:id="@+id/action_progress_view_to_FirstFragment"
             app:destination="@id/FirstFragment" />
+        <argument
+            android:name="progress_name"
+            app:argType="string"
+            android:defaultValue=" " />
+        <argument
+            android:name="progress_description"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue=" " />
     </fragment>
 
 
