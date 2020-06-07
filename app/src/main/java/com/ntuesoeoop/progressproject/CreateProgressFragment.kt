@@ -93,4 +93,6 @@ class CreateProgressFragment : Fragment() {
                 }
             }
     }
+
+
 }

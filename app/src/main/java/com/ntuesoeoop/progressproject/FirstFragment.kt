@@ -69,7 +69,8 @@ class FirstFragment : Fragment() {
 
     private fun addProgress() {
         var progress = Progress("Test Progress")
-        for (i in 1..5) {
+
+        for (i in 1..2) {
             progressViewModel.insert(progress)
         }
     }

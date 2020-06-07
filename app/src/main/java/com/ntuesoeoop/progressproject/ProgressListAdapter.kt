@@ -46,4 +46,5 @@ class ProgressListAdapter internal constructor(context: Context) :
         this.progresses = progresses
         notifyDataSetChanged()
     }
+
 }

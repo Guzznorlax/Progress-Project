@@ -51,4 +51,7 @@
 
     <string name="nav_header_desc">Navigation header</string>
     <string name="text_cancel">Cancel</string>
+
+    <string name="my_view">btn_my_view</string>
+    <string name="mycontent">mycontent</string>
 </resources>

@@ -1,23 +1,17 @@
 package com.ntuesoeoop.progressproject
 
-import android.content.Intent
 import android.os.Bundle
-import android.os.PersistableBundle
-import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
-import androidx.drawerlayout.widget.DrawerLayout
-import androidx.navigation.Navigation.findNavController
-import androidx.navigation.findNavController
+import androidx.navigation.Navigation
+
+
 import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.navigateUp
-import androidx.navigation.ui.setupActionBarWithNavController
-import androidx.navigation.ui.setupWithNavController
-import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.material.navigation.NavigationView
+
 
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
@@ -31,6 +25,7 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_first.*
 
+
 class MainActivity : AppCompatActivity() {
 //    private lateinit var progressViewModel: ProgressViewModel
 
@@ -41,6 +36,21 @@ class MainActivity : AppCompatActivity() {
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
 
+
+//        fab.setOnClickListener { view ->
+//            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                    .setAction("Action", null).show()
+//        }
+//        fab.setOnClickListener {view ->
+//            findNavController(view).navigate(R.id.action_FirstFragment_to_createProgressFragment)
+//        }
+
+    }
+
+    //make button_view button jump to progress_view
+    fun onBtnClick(view: View) {
+        //Toast.makeText(this, "hi", Toast.LENGTH_SHORT).show();
+        Navigation.findNavController(view).navigate(R.id.action_FirstFragment_to_progress_view)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
