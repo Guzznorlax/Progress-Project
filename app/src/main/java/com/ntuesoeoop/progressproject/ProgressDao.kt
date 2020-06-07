@@ -13,9 +13,9 @@ interface ProgressDao {
     fun getAll(): LiveData<List<Progress>>
 
     @Query("SELECT * FROM progress WHERE id = :id")
-    fun getById(id: String): LiveData<Progress>
+    fun getById(id: Int): LiveData<Progress>
 
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(progress: Progress): Long
 
     @Update(onConflict = OnConflictStrategy.REPLACE)
@@ -23,4 +23,7 @@ interface ProgressDao {
 
     @Delete
     fun delete(progress: Progress)
+
+    @Query("DELETE FROM progress")
+    fun deleteAll()
 }

@@ -23,7 +23,11 @@ class ProgressViewModel(application: Application) : AndroidViewModel(application
         repo.insert(progress)
     }
 
-    fun update(progress: Progress) = viewModelScope.launch(Dispatchers.IO){
+    fun update(progress: Progress) = viewModelScope.launch(Dispatchers.IO) {
         repo.update(progress)
+    }
+
+    fun deleteAll() = viewModelScope.launch(Dispatchers.IO) {
+        repo.deleteAll()
     }
 }

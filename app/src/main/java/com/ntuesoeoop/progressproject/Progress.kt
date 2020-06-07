@@ -14,12 +14,12 @@ class Progress {
     }
 
     @PrimaryKey(autoGenerate = true)
-    private var id: Int  // ID
+    var id: Int = 0  // ID
 
     @NonNull
     private var name: String  // 名稱
 
-    private var description: String  // 說明
+    private var description: String?  // 說明
 
     private var level: Int  // 等級
 
@@ -54,11 +54,10 @@ class Progress {
         period: Int = 1,
         useTargetNum: Boolean = false,
         targetNum: Float = 0f,
-        description: String = "",
-        id: Int = 0
+        description: String? = null
     ) {
-        this.id = id
         this.name = name
+        this.id = 0
 
         this.description = description
 
@@ -86,10 +85,6 @@ class Progress {
 
     }
 
-    public fun getId(): Int {
-        return this.id
-    }
-
     public fun getName(): String {
         return this.name
     }
@@ -98,7 +93,7 @@ class Progress {
         return this.exp
     }
 
-    public fun setExp(exp: Float){
+    public fun setExp(exp: Float) {
         this.exp = exp
     }
 
@@ -110,7 +105,7 @@ class Progress {
         return this.passedPeriod
     }
 
-    public fun setPassedPeriod(passedPeriod: Int){
+    public fun setPassedPeriod(passedPeriod: Int) {
         this.passedPeriod = passedPeriod
     }
 
@@ -118,7 +113,7 @@ class Progress {
         return this.currentCompleted
     }
 
-    public fun setCurrentCompleted(currentCompleted: Int){
+    public fun setCurrentCompleted(currentCompleted: Int) {
         this.currentCompleted = currentCompleted
     }
 
@@ -126,11 +121,11 @@ class Progress {
         this.name = name
     }
 
-    public fun setDescription(description: String) {
+    public fun setDescription(description: String?) {
         this.description = description
     }
 
-    public fun getDescription(): String {
+    public fun getDescription(): String? {
         return this.description
     }
 
@@ -156,7 +151,7 @@ class Progress {
         return this.maxStreak
     }
 
-    public fun setMaxStreak(maxStreak: Int){
+    public fun setMaxStreak(maxStreak: Int) {
         this.maxStreak = maxStreak
     }
 
@@ -200,7 +195,7 @@ class Progress {
         return this.totalCompleted
     }
 
-    public fun setTotalCompleted(totalCompleted: Int){
+    public fun setTotalCompleted(totalCompleted: Int) {
         this.totalCompleted = totalCompleted
     }
 
@@ -208,7 +203,7 @@ class Progress {
         return this.targetCompleted
     }
 
-    public fun setTargetCompleted(targetCompleted: Int){
+    public fun setTargetCompleted(targetCompleted: Int) {
         this.targetCompleted = targetCompleted
     }
 

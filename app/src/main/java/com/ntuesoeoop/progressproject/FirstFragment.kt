@@ -12,6 +12,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -24,15 +25,15 @@ import org.koin.experimental.property.inject
 
 class FirstFragment : Fragment() {
     private lateinit var progressViewModel: ProgressViewModel
+    private val createProgressArgs: FirstFragmentArgs by navArgs()
 
-    var progressList: MutableList<Progress> = mutableListOf()
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-
-        addProgress()
-
-
+    // unused
+    companion object {
+        fun getInstance(progressTitle: String, progressDescription: String?): FirstFragment {
+            val fragment = FirstFragment()
+            fragment.createProgress(progressTitle, progressDescription)
+            return fragment
+        }
     }
 
     override fun onCreateView(
@@ -60,17 +61,24 @@ class FirstFragment : Fragment() {
         progressViewModel = ViewModelProvider(this).get(ProgressViewModel::class.java)
 
         progressViewModel.allProgresses.observe(viewLifecycleOwner, Observer { progresses ->
-            // Update the cached copy of the words in the adapter.
+            // Update the cached copy of the progresses in the adapter.
             progresses?.let {
                 adapter?.setProgress(it)
             }
         })
+
+        if (createProgressArgs.progressName != " ") {
+            var newProgress = Progress(
+                createProgressArgs.progressName,
+                description = createProgressArgs.progressDescription
+            )
+            progressViewModel.insert(newProgress)
+        }
+
     }
 
-    private fun addProgress() {
-        var progress = Progress("Test Progress")
-        for (i in 1..5) {
-            progressViewModel.insert(progress)
-        }
+    fun createProgress(title: String, description: String?) {
+        var newProgress = Progress(title)
+        progressViewModel.insert(newProgress)
     }
 }

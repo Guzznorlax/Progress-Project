@@ -29,7 +29,7 @@ abstract class ProgressDatabase : RoomDatabase() {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
                     ProgressDatabase::class.java,
-                    "progress_database"
+                    "progress"
                 )
                     // Wipes and rebuilds instead of migrating if no Migration object.
                     // Migration is not part of this codelab.
@@ -63,15 +63,15 @@ abstract class ProgressDatabase : RoomDatabase() {
 
         /**
          * Populate the database in a new coroutine.
-         * If you want to start with more words, just add them.
          */
         fun populateDatabase(progressDao: ProgressDao) {
             // Start the app with a clean database every time.
             // Not needed if you only populate on creation.
-//            progressDao.deleteAll()
+            progressDao.deleteAll()
 
             var progress = Progress("Hello")
             progressDao.insert(progress)
+
             progress = Progress("World!")
             progressDao.insert(progress)
         }

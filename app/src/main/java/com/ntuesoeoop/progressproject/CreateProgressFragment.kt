@@ -9,10 +9,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.textfield.TextInputEditText
-import com.google.android.material.textfield.TextInputLayout
-import kotlinx.android.synthetic.main.fragment_first.*
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
+
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -60,13 +57,14 @@ class CreateProgressFragment : Fragment() {
             var titleText = titleTextInputLayout?.text.toString()
             var descriptionText = descriptionTextInputLayout?.text.toString()
 
-            var newProgress = Progress(name = titleText, description = descriptionText)
+            // FirstFragment.getInstance(titleText, descriptionText)
 
-            GlobalScope.launch {
-                
-            }
-
-            findNavController().navigate(R.id.action_createProgressFragment_to_FirstFragment)
+            val action =
+                CreateProgressFragmentDirections.actionCreateProgressFragmentToFirstFragment(
+                    titleText,
+                    descriptionText
+                )
+            findNavController().navigate(action)
         }
 
         view.findViewById<Button>(R.id.button_cancel_create_progress).setOnClickListener {
@@ -93,4 +91,6 @@ class CreateProgressFragment : Fragment() {
                 }
             }
     }
+
+
 }
