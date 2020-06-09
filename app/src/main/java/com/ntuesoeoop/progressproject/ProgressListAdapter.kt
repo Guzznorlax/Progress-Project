@@ -34,11 +34,21 @@ class ProgressListAdapter internal constructor(context: Context) :
         val current = progresses[position]
         var progressName = current.getName()
         var progressDescription = current.getDescription()
+        var progressPeriod = current.getPeriod().toString()
+        var progresstargetcompleted = current.getPeriod().toString()
+        var progressusetargetnum = current.getUseTargetNum()
+        var progresstargetnum = current.getPeriod().toInt()
+
+        //println(progressName + progressPeriod)
 
         holder.itemView.setOnClickListener {
             val action = FirstFragmentDirections.actionFirstFragmentToProgressView(
                 progressName,
-                progressDescription
+                progressDescription,
+                progressPeriod,
+                progresstargetcompleted,
+                progressusetargetnum,
+                progresstargetnum
             )
 
             it.findNavController().navigate(action)

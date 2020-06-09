@@ -16,8 +16,10 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import kotlinx.android.synthetic.main.create_progress.view.*
 import kotlinx.android.synthetic.main.fragment_first.*
 import org.koin.experimental.property.inject
+import kotlin.reflect.typeOf
 
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
@@ -67,11 +69,18 @@ class FirstFragment : Fragment() {
             }
         })
 
-        if (createProgressArgs.progressName != " ") {
+        if (createProgressArgs.progressName != " " && createProgressArgs.progressName != "") {
             var newProgress = Progress(
                 createProgressArgs.progressName,
-                description = createProgressArgs.progressDescription
+                description = createProgressArgs.progressDescription,
+                period = createProgressArgs.progressPeriod,
+                targetCompleted = createProgressArgs.progressTargetCompleted,
+                useTargetNum = createProgressArgs.progressUsetargenum,
+                targetNum = createProgressArgs.progressTargetNum
             )
+
+            println(createProgressArgs.progressName + createProgressArgs.progressDescription + createProgressArgs.progressPeriod + createProgressArgs.progressTargetCompleted +
+                    createProgressArgs.progressUsetargenum + createProgressArgs.progressTargetNum)
             progressViewModel.insert(newProgress)
         }
 
