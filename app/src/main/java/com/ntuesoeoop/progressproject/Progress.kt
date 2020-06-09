@@ -1,10 +1,13 @@
 package com.ntuesoeoop.progressproject
 
+import android.R
+import android.widget.Switch
 import androidx.annotation.NonNull
 import androidx.room.Entity
 import androidx.room.Ignore
 import androidx.room.PrimaryKey
 import kotlin.math.max
+
 
 @Entity(tableName = Progress.TABLE_NAME)
 class Progress {
@@ -39,7 +42,7 @@ class Progress {
     private var targetCompleted: Int  // 目標達成日數 （週期內應完成天數）
 
     private var useTargetNum: Boolean  // 是否紀錄數字
-    private var targetNum: Float  // 目標數量
+    private var targetNum: Int // 目標數量
     private var currentNum: Float  // 目前數量
 
     private var count: Float  // 總共數量
@@ -53,8 +56,9 @@ class Progress {
         name: String,
         period: Int = 1,
         useTargetNum: Boolean = false,
-        targetNum: Float = 0f,
-        description: String? = null
+        targetNum: Int = 0,
+        description: String? = null,
+        targetCompleted : Int = 1
     ) {
         this.name = name
         this.id = 0
@@ -73,7 +77,7 @@ class Progress {
 
         this.isCompleted = false
         this.totalCompleted = 0
-        this.targetCompleted = 0
+        this.targetCompleted = targetCompleted
 
         this.useTargetNum = useTargetNum
         this.targetNum = targetNum
@@ -229,12 +233,12 @@ class Progress {
         return this.useTargetNum
     }
 
-    public fun getTargetNum(): Float {
+    public fun getTargetNum(): Int {
         return this.targetNum
     }
 
-    public fun setTargetNum(targetNum: Float) {
-        this.targetNum = max(targetNum, 0f)
+    public fun setTargetNum(targetNum: Int) {
+        this.targetNum = max(targetNum, 0)
     }
 
     public fun getCurrentNum(): Float {

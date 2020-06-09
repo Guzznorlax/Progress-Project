@@ -21,16 +21,19 @@ class ViewFragment : Fragment() {
         return inflater.inflate(R.layout.progress_view, container, false)
     }
 
-    //create the return process for the return button
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        //create the return process for the return button
         view.findViewById<Button>(R.id.return_button).setOnClickListener {
             findNavController().navigate(R.id.action_progress_view_to_FirstFragment)
         }
 
+        //store the information
         view.findViewById<TextView>(R.id.textview_progress_title).text = progressArgs.progressName
         view.findViewById<TextView>(R.id.textview_progress_description).text = progressArgs.progressDescription
+        view.findViewById<TextView>(R.id.textview_view_progress_period).text = progressArgs.progressPeriod
 
     }
 
