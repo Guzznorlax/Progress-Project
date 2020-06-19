@@ -1,18 +1,22 @@
 package com.ntuesoeoop.progressproject
 
 import android.content.Context
-import android.provider.UserDictionary
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import android.widget.*
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import kotlinx.android.synthetic.main.create_progress.*
+import kotlinx.android.synthetic.main.progress_normal_card.view.*
 
 class ProgressListAdapter internal constructor(context: Context) :
     RecyclerView.Adapter<ProgressListAdapter.ProgressViewHolder>() {
     private val inflater: LayoutInflater = LayoutInflater.from(context)
     private var progresses = emptyList<Progress>()
+
+
 
 
     inner class ProgressViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -21,6 +25,7 @@ class ProgressListAdapter internal constructor(context: Context) :
         val levelTextView: TextView = itemView.findViewById(R.id.text_view_progress_level)
         val streakTextView: TextView = itemView.findViewById(R.id.text_view_progress_streak)
         val countTextView: TextView = itemView.findViewById(R.id.text_view_progress_completed_ratio)
+        val iscompleted: CheckBox = itemView.findViewById(R.id.check_box_progress_complete)
 
     }
 
@@ -29,6 +34,8 @@ class ProgressListAdapter internal constructor(context: Context) :
 
         return ProgressViewHolder(itemView)
     }
+
+
 
     override fun onBindViewHolder(holder: ProgressViewHolder, position: Int) {
         val current = progresses[position]
@@ -39,7 +46,7 @@ class ProgressListAdapter internal constructor(context: Context) :
         var progressusetargetnum = current.getUseTargetNum()
         var progresstargetnum = current.getPeriod().toInt()
 
-        //println(progressName + progressPeriod)
+
 
         holder.itemView.setOnClickListener {
             val action = FirstFragmentDirections.actionFirstFragmentToProgressView(
@@ -58,15 +65,25 @@ class ProgressListAdapter internal constructor(context: Context) :
         holder.levelTextView.text = current.getLevel().toString()
         holder.streakTextView.text = current.getStreak().toString()
         holder.countTextView.text = current.getCompletedRatio()
+
+        holder.iscompleted.setOnClickListener {
+            if (holder.iscompleted.isChecked) {
+                current.setIsCompleted(true)
+            } else {
+                current.setIsCompleted(false)
+            }
+            //println(current.getIsCompleted())
+        }
     }
+
 
     override fun getItemCount(): Int {
         return progresses.size
     }
-
     internal fun setProgress(progresses: List<Progress>) {
         this.progresses = progresses
         notifyDataSetChanged()
     }
+
 
 }
