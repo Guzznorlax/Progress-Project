@@ -44,7 +44,15 @@ class ProgressListAdapter internal constructor(context: Context) :
         var progressPeriod = current.getPeriod().toString()
         var progresstargetcompleted = current.getPeriod().toString()
         var progressusetargetnum = current.getUseTargetNum()
-        var progresstargetnum = current.getPeriod().toInt()
+        var progresstargetnum = current.getPeriod()
+        var progressPassedPeriod = current.getPassedPeriod().toString()
+        var progressCurrentCompleted = current.getCurrentCompleted().toString()
+        var progressCount = current.getCount().toString()
+        var progressTargetCount = current.getTargetCount().toString()
+        var progressTargetNumber = current.getTargetNum().toString()
+        var progressCurrentNumber = current.getCurrentNum().toString()
+        var progressStrike = current.getStreak().toString()
+        var progressMaxStrike = current.getMaxStreak().toString()
 
 
 
@@ -55,7 +63,15 @@ class ProgressListAdapter internal constructor(context: Context) :
                 progressPeriod,
                 progresstargetcompleted,
                 progressusetargetnum,
-                progresstargetnum
+                progresstargetnum,
+                progressPassedPeriod,
+                progressCurrentCompleted,
+                progressCount,
+                progressTargetCount,
+                progressTargetNumber,
+                progressCurrentNumber,
+                progressStrike,
+                progressMaxStrike
             )
 
             it.findNavController().navigate(action)
@@ -72,6 +88,7 @@ class ProgressListAdapter internal constructor(context: Context) :
             } else {
                 current.setIsCompleted(false)
             }
+            setProgress(progresses)
             //println(current.getIsCompleted())
         }
     }

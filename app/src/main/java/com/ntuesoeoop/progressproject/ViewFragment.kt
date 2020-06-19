@@ -34,6 +34,19 @@ class ViewFragment : Fragment() {
         view.findViewById<TextView>(R.id.textview_progress_title).text = progressArgs.progressName
         view.findViewById<TextView>(R.id.textview_progress_description).text = progressArgs.progressDescription
         view.findViewById<TextView>(R.id.textview_view_progress_period).text = progressArgs.progressPeriod
+        view.findViewById<TextView>(R.id.textview_view_progress_passed_period).text = progressArgs.progressPassedPeriod
+
+        view.findViewById<TextView>(R.id.textview_view_progress_target_completed).text = progressArgs.progressTargetCompleted
+        view.findViewById<TextView>(R.id.textview_view_progress_current_completed).text = progressArgs.progressCurrentCompleted
+
+        view.findViewById<TextView>(R.id.textview_view_progress_target_number).text = progressArgs.progressTargetNumber
+        view.findViewById<TextView>(R.id.textview_view_progress_current_number).text = progressArgs.progressCurrentNumber
+
+        view.findViewById<TextView>(R.id.textview_view_progress_strike).text = progressArgs.progressStrike
+        view.findViewById<TextView>(R.id.textview_view_progress_max_strike).text = progressArgs.progressMaxStrike
+
+        view.findViewById<TextView>(R.id.textview_view_progress_count).text = progressArgs.progessCount
+        view.findViewById<TextView>(R.id.textview_view_progress_target_count).text = progressArgs.progressTargetCount
 
     }
 

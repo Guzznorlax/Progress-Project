@@ -123,6 +123,37 @@
             android:name="progress_target_num"
             app:argType="integer"
             android:defaultValue="0" />
+        <argument
+            android:name="progress_passed_period"
+            app:argType="string" />
+        <argument
+            android:name="progress_current_completed"
+            app:argType="string"
+            android:defaultValue="0" />
+        <argument
+            android:name="progess_count"
+            app:argType="string"
+            android:defaultValue="0" />
+        <argument
+            android:name="progress_target_count"
+            app:argType="string"
+            android:defaultValue="0" />
+        <argument
+            android:name="progress_target_number"
+            app:argType="string"
+            android:defaultValue="0" />
+        <argument
+            android:name="progress_current_number"
+            app:argType="string"
+            android:defaultValue="0" />
+        <argument
+            android:name="progress_strike"
+            app:argType="string"
+            android:defaultValue="0" />
+        <argument
+            android:name="progress_max_strike"
+            app:argType="string"
+            android:defaultValue="0" />
     </fragment>
 
 
