@@ -1,12 +1,13 @@
 package com.ntuesoeoop.progressproject
 
-import android.R
-import android.widget.Switch
+
 import androidx.annotation.NonNull
 import androidx.room.Entity
 import androidx.room.Ignore
 import androidx.room.PrimaryKey
+import java.util.*
 import kotlin.math.max
+import kotlin.time.TimeSource
 
 
 @Entity(tableName = Progress.TABLE_NAME)
@@ -258,20 +259,23 @@ class Progress {
     }
 
     public fun evaluate() {
-        if (this.useTargetNum) {
-            if (this.currentNum >= this.targetNum) {
-                this.isCompleted = true
-            }
-        }
+
+        // no use
+        //        if (this.useTargetNum) {
+        //            if (this.currentNum >= this.targetNum) {
+        //               this.isCompleted = true
+        //            }
+        //        }
 
         if (this.isCompleted) {
             this.streak += 1
             this.totalCompleted += 1
             this.updateMaxStreak()
+        }else{
+            this.streak =0
         }
 
-        this.targetCompleted += 1
-        this.count += this.currentNum
         this.targetCount += this.targetNum
     }
+
 }
