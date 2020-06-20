@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -15,6 +14,7 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import kotlinx.android.synthetic.main.progress_normal_card.*
 import java.util.*
 
 
@@ -67,6 +67,19 @@ class FirstFragment : Fragment() {
                 adapter?.setProgress(it)
             }
         })
+
+//        if(createProgressArgs.progressUsetargenum){
+//            view.findViewById<EditText>(R.id.edittext_progress_currentnumber).visibility = View.VISIBLE
+//            view.findViewById<CheckBox>(R.id.check_box_progress_complete).visibility = View.INVISIBLE
+//            println("hillo")
+//        }else{
+//            if(view.findViewById<EditText>(R.id.edittext_progress_currentnumber)!= null){
+//                view.findViewById<EditText>(R.id.edittext_progress_currentnumber).visibility = View.INVISIBLE
+//                view.findViewById<CheckBox>(R.id.check_box_progress_complete).visibility = View.VISIBLE
+//                println("goodmorning")
+//            }
+//        }
+
 
         if (createProgressArgs.progressName != " " && createProgressArgs.progressName != "") {
             var newProgress = Progress(

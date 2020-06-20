@@ -59,7 +59,7 @@
         android:layout_marginTop="8dp"
         android:padding="8dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout9">
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout8">
 
         <TextView
             android:id="@+id/textView12"
@@ -232,9 +232,9 @@
         android:layout_marginTop="8dp"
         android:padding="8dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout8">
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout10">
 
         <TextView
             android:id="@+id/textView15"

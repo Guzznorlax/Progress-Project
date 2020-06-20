@@ -2,12 +2,14 @@ package com.ntuesoeoop.progressproject
 
 import android.content.Context
 import android.content.SharedPreferences
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.CheckBox
+import android.widget.EditText
 import android.widget.TextView
-import android.widget.Toast
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import org.koin.experimental.builder.getArguments
@@ -29,6 +31,8 @@ class ProgressListAdapter internal constructor(context: Context) :
         val streakTextView: TextView = itemView.findViewById(R.id.text_view_progress_streak)
         val countTextView: TextView = itemView.findViewById(R.id.text_view_progress_completed_ratio)
         val iscompleted: CheckBox = itemView.findViewById(R.id.check_box_progress_complete)
+        val currentnunber : EditText = itemView.findViewById(R.id.edittext_progress_currentnumber)
+        val update: Button = itemView.findViewById(R.id.button_update_currentnum)
 
     }
 
@@ -57,6 +61,52 @@ class ProgressListAdapter internal constructor(context: Context) :
         var progressStrike = current.getStreak().toString()
         var progressMaxStrike = current.getMaxStreak().toString()
 
+        //make the text be on the card
+        holder.titleTextView.text = progressName
+        holder.levelTextView.text = current.getLevel().toString()
+        holder.streakTextView.text = current.getStreak().toString()
+        holder.countTextView.text = current.getCompletedRatio()
+
+        //make the card change to number mode
+        if(current.getUseTargetNum()) {
+            holder.currentnunber.visibility = View.VISIBLE
+            holder.iscompleted.visibility = View.INVISIBLE
+            holder.update.visibility = View.VISIBLE
+        }
+
+        //set the value of currentnum
+        holder.update.setOnClickListener{
+            if(holder.currentnunber.visibility == View.VISIBLE){
+                val currentnum : String = holder.currentnunber.text.toString()
+                var currentNum = 0F
+                if (currentnum != ""){
+                    currentNum = currentnum.toFloat()
+                }
+                current.setCurrentNum(currentNum)
+                println(current.getCurrentNum())
+
+                //set whether it is completed
+                if(current.getCurrentNum() >= current.getTargetNum()){
+                    current.setIsCompleted(true)
+                }else {
+                    current.setIsCompleted(false)
+                }
+                println(current.getIsCompleted())
+            }
+        }
+
+        //set whether it is completed
+        holder.iscompleted.setOnClickListener {
+            if (holder.iscompleted.isChecked) {
+                current.setIsCompleted(true)
+            } else {
+                current.setIsCompleted(false)
+            }
+            setProgress(progresses)
+            println(current.getIsCompleted())
+        }
+
+
 
 
         holder.itemView.setOnClickListener {
@@ -78,21 +128,6 @@ class ProgressListAdapter internal constructor(context: Context) :
             )
 
             it.findNavController().navigate(action)
-        }
-
-        holder.titleTextView.text = progressName
-        holder.levelTextView.text = current.getLevel().toString()
-        holder.streakTextView.text = current.getStreak().toString()
-        holder.countTextView.text = current.getCompletedRatio()
-
-        holder.iscompleted.setOnClickListener {
-            if (holder.iscompleted.isChecked) {
-                current.setIsCompleted(true)
-            } else {
-                current.setIsCompleted(false)
-            }
-            setProgress(progresses)
-            //println(current.getIsCompleted())
         }
 
 
@@ -171,3 +206,7 @@ class ProgressListAdapter internal constructor(context: Context) :
 
 
 }
+
+
+
+

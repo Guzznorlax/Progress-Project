@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.EditText
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -39,14 +40,23 @@ class ViewFragment : Fragment() {
         view.findViewById<TextView>(R.id.textview_view_progress_target_completed).text = progressArgs.progressTargetCompleted
         view.findViewById<TextView>(R.id.textview_view_progress_current_completed).text = progressArgs.progressCurrentCompleted
 
-        view.findViewById<TextView>(R.id.textview_view_progress_target_number).text = progressArgs.progressTargetNumber
-        view.findViewById<TextView>(R.id.textview_view_progress_current_number).text = progressArgs.progressCurrentNumber
-
         view.findViewById<TextView>(R.id.textview_view_progress_strike).text = progressArgs.progressStrike
         view.findViewById<TextView>(R.id.textview_view_progress_max_strike).text = progressArgs.progressMaxStrike
 
         view.findViewById<TextView>(R.id.textview_view_progress_count).text = progressArgs.progessCount
         view.findViewById<TextView>(R.id.textview_view_progress_target_count).text = progressArgs.progressTargetCount
+
+        if(progressArgs.progressUsetargenum){
+            view.findViewById<TextView>(R.id.textview_view_progress_target_number).text = progressArgs.progressTargetNumber
+            view.findViewById<TextView>(R.id.textview_view_progress_current_number).text = progressArgs.progressCurrentNumber
+        }else{
+            view.findViewById<TextView>(R.id.textview_view_progress_target_number).visibility = View.INVISIBLE
+            view.findViewById<TextView>(R.id.textview_view_progress_current_number).visibility = View.INVISIBLE
+            view.findViewById<TextView>(R.id.textView4).visibility = View.INVISIBLE
+            view.findViewById<TextView>(R.id.textView15).visibility = View.INVISIBLE
+        }
+
+
 
     }
 

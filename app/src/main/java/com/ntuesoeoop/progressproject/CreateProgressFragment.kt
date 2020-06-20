@@ -4,14 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.CompoundButton
-import android.widget.EditText
-import android.widget.Switch
+import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.textfield.TextInputEditText
 import kotlinx.android.synthetic.main.create_progress.*
+import kotlinx.android.synthetic.main.progress_normal_card.*
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -116,9 +114,22 @@ class CreateProgressFragment : Fragment() {
                     targetcompletday,
                     targetnumber,
                     usetargetnum.toBoolean()
-
-
                 )
+
+            //            if(usetargetuumTextInputLayout.isChecked ){
+            //                //view.findViewById<TextView>(R.id.edittext_progress_currentnumber).visibility = View.INVISIBLE
+            //                view.findViewById<EditText>(R.id.edittext_progress_currentnumber).visibility = View.VISIBLE
+            //                view.findViewById<CheckBox>(R.id.check_box_progress_complete).visibility = View.INVISIBLE
+            //                println("hillo")
+            //            }else{
+            //                view.findViewById<EditText>(R.id.edittext_progress_currentnumber).visibility = View.INVISIBLE
+            //                view.findViewById<CheckBox>(R.id.check_box_progress_complete).visibility = View.VISIBLE
+            //                println("goodmorning")
+            //            }
+
+
+
+
             findNavController().navigate(action)
         }
 
