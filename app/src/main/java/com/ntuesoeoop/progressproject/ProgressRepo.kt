@@ -30,7 +30,8 @@ class ProgressRepo(private val progressDao: ProgressDao) {
     }
 
     @WorkerThread
-    suspend fun deleteAll(){
+    suspend fun deleteAll() {
         progressDao.deleteAll()
     }
+    
 }
