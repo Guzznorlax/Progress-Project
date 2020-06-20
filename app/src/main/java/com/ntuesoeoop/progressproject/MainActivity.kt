@@ -1,5 +1,6 @@
 package com.ntuesoeoop.progressproject
 
+import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
@@ -24,6 +25,7 @@ import androidx.recyclerview.widget.RecyclerView
 
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_first.*
+import java.util.*
 
 
 class MainActivity : AppCompatActivity() {
@@ -34,6 +36,22 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
+
+
+        val cal = Calendar.getInstance()
+        val currentDay = cal.get(Calendar.MINUTE)
+        val sharedPreferences: SharedPreferences = getSharedPreferences("appInfo", 0)
+        val lastDay = sharedPreferences.getInt("minute", 0)
+        if (lastDay != currentDay) {
+            val editor = sharedPreferences.edit()
+            editor.putInt("minute", currentDay)
+            editor.commit()
+            // Your once a day code here
+            Toast.makeText(this, "Hello", Toast.LENGTH_SHORT).show()
+        }
+
+
+
 
 
     }
@@ -61,4 +79,8 @@ class MainActivity : AppCompatActivity() {
             else -> super.onOptionsItemSelected(item)
         }
     }
+
+
+
+
 }

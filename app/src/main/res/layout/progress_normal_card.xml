@@ -53,7 +53,26 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.94"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:visibility="visible"/>
+
+        <EditText
+            android:id="@+id/edittext_progress_currentnumber"
+            android:layout_width="61dp"
+            android:layout_height="62dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:ems="8"
+            android:inputType="numberDecimal"
+            android:text="0"
+            android:textSize="18sp"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.241" />
 
         <ImageView
             android:id="@+id/icon_progress_level"
@@ -99,6 +118,21 @@
             android:text="@string/string_ratio_place_holder"
             app:layout_constraintStart_toEndOf="@+id/icon_progress_completed_icon"
             app:layout_constraintTop_toTopOf="@+id/text_view_progress_level" />
+
+        <Button
+            android:id="@+id/button_update_currentnum"
+            android:layout_width="61dp"
+            android:layout_height="37dp"
+            android:layout_marginTop="64dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:text="update"
+            android:textSize="10sp"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/edittext_progress_currentnumber"
+            app:layout_constraintVertical_bias="0.0" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

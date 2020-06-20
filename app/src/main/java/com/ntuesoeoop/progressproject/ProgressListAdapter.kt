@@ -1,17 +1,25 @@
 package com.ntuesoeoop.progressproject
 
 import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.*
+import android.widget.Button
+import android.widget.CheckBox
+import android.widget.EditText
+import android.widget.TextView
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.create_progress.*
-import kotlinx.android.synthetic.main.progress_normal_card.view.*
+import org.koin.experimental.builder.getArguments
+import java.util.*
 
-class ProgressListAdapter internal constructor(context: Context, progressStatusUpdateListener: ProgressStatusUpdateListener) :
+
+class ProgressListAdapter internal constructor(
+    context: Context,
+    progressStatusUpdateListener: ProgressStatusUpdateListener
+) :
     RecyclerView.Adapter<ProgressListAdapter.ProgressViewHolder>() {
     private val inflater: LayoutInflater = LayoutInflater.from(context)
     private var progresses = emptyList<Progress>()
@@ -28,7 +36,11 @@ class ProgressListAdapter internal constructor(context: Context, progressStatusU
         val levelTextView: TextView = itemView.findViewById(R.id.text_view_progress_level)
         val streakTextView: TextView = itemView.findViewById(R.id.text_view_progress_streak)
         val countTextView: TextView = itemView.findViewById(R.id.text_view_progress_completed_ratio)
+
         val isCompleted: CheckBox = itemView.findViewById(R.id.check_box_progress_complete)
+        val currentNumber: EditText = itemView.findViewById(R.id.edittext_progress_currentnumber)
+        val updateNumberBtn: Button = itemView.findViewById(R.id.button_update_currentnum)
+
 
     }
 
@@ -60,6 +72,40 @@ class ProgressListAdapter internal constructor(context: Context, progressStatusU
         val progressMaxStrike = current.getMaxStreak().toString()
 
 
+        //make the text be on the card
+        holder.titleTextView.text = progressName
+        holder.levelTextView.text = current.getLevel().toString()
+        holder.streakTextView.text = current.getStreak().toString()
+        holder.countTextView.text = current.getCompletedRatio()
+
+        //make the card change to number mode
+        if (current.getUseTargetNum()) {
+            holder.currentNumber.visibility = View.VISIBLE
+            holder.isCompleted.visibility = View.INVISIBLE
+            holder.updateNumberBtn.visibility = View.VISIBLE
+        }
+
+        //set the value of currentNum
+        holder.updateNumberBtn.setOnClickListener {
+            if (holder.currentNumber.visibility == View.VISIBLE) {
+                val currentnum: String = holder.currentNumber.text.toString()
+                var currentNum = 0F
+                if (currentnum != "") {
+                    currentNum = currentnum.toFloat()
+                }
+                current.setCurrentNum(currentNum)
+                println(current.getCurrentNum())
+
+                //set whether it is completed
+                if (current.getCurrentNum() >= current.getTargetNum()) {
+                    current.setIsCompleted(true)
+                } else {
+                    current.setIsCompleted(false)
+                }
+                println(current.getIsCompleted())
+            }
+            progressStatusUpdateListener.onProgressStatusUpdated(current)
+        }
 
         holder.itemView.setOnClickListener {
             val action = FirstFragmentDirections.actionFirstFragmentToProgressView(
@@ -87,9 +133,9 @@ class ProgressListAdapter internal constructor(context: Context, progressStatusU
         holder.streakTextView.text = current.getStreak().toString()
         holder.countTextView.text = current.getCompletedRatio()
         holder.isCompleted.isChecked = current.getIsCompleted()
+        holder.currentNumber.setText(current.getCurrentNum().toString())
 
-        println(current.getIsCompleted())
-
+        //set whether it is completed
         holder.isCompleted.setOnClickListener {
 
             if (holder.isCompleted.isChecked) {
@@ -101,6 +147,65 @@ class ProgressListAdapter internal constructor(context: Context, progressStatusU
             setProgress(progresses)
             progressStatusUpdateListener.onProgressStatusUpdated(current)
         }
+
+
+        // wrong
+        //        current.evaluate()
+        //        val calender = Calendar.getInstance()
+        //        val hour: String = calender.get(Calendar.HOUR_OF_DAY).toString()
+        //        val minute: String = calender.get(Calendar.MINUTE).toString()
+        //        val second: String = calender.get(Calendar.SECOND).toString()
+        //        if(hour == "1"&&minute == "54"&&second=="0"){
+        //            current.evaluate()
+        //            println("good")
+        //        }
+        //        println("hour" +hour+minute+second)
+
+
+        // wrong
+        //val alarmManager =
+        //            context.getSystemService(Context.ALARM_SERVICE) as? AlarmManager
+        //
+        //        PendingIntent
+        //        alarmMgr?.setInexactRepeating(
+        //            AlarmManager.ELAPSED_REALTIME,
+        //            SystemClock.elapsedRealtime() + AlarmManager.INTERVAL_HALF_HOUR,
+        //            AlarmManager.INTERVAL_HALF_HOUR,
+        //            alarmIntent
+        //        )
+
+
+        // wrong
+        //var alarmMgr : AlarmManager ? = null
+        //        lateinit var alarmIntent : PendingIntent
+        //
+        //        // Set the alarm to start at approximately 2:00 pm
+        //        val calendar : Calendar = Calendar . getInstance (). apply {
+        //            timeInMillis = System . currentTimeMillis ()
+        //            set ( Calendar.HOUR_OF_DAY , 14 )
+        //        }
+        //
+        //        alarmMgr ?. setInexactRepeating (
+        //            AlarmManager . RTC,
+        //            calendar . timeInMillis,
+        //            AlarmManager.INTERVAL_FIFTEEN_MINUTES ,
+        //            alarmIntent
+        //        )
+
+        // wrong
+        //val cal = Calendar.getInstance()
+        //        val currentDay = cal.get(Calendar.DAY_OF_MONTH)
+        //
+        //        val sharedPreferences: SharedPreferences = getSharedPreferences("appInfo", 0)
+        //        val lastDay = sharedPreferences.getInt("day", 0)
+        //
+        //        if (lastDay != currentDay) {
+        //            val editor = sharedPreferences.edit()
+        //            editor.putInt("weekOfYear", currentDay)
+        //            editor.commit()
+        //            // Your once a day code here
+        //            current.evaluate()
+        //        }
     }
 
 
@@ -116,3 +221,7 @@ class ProgressListAdapter internal constructor(context: Context, progressStatusU
 
 
 }
+
+
+
+
