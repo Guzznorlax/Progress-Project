@@ -9,7 +9,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-@Database(entities = [(Progress::class)], version = 1)
+@Database(entities = [(Progress::class)], version = 2)
 abstract class ProgressDatabase : RoomDatabase() {
 
     abstract fun progressDao(): ProgressDao
@@ -72,7 +72,7 @@ abstract class ProgressDatabase : RoomDatabase() {
             var progress = Progress("Hello")
             progressDao.insert(progress)
 
-            progress = Progress("World!")
+            progress = Progress("World!", period = 1, description = "aaaa")
             progressDao.insert(progress)
         }
     }
