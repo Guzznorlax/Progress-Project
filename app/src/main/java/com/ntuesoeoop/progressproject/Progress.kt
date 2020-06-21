@@ -1,6 +1,7 @@
 package com.ntuesoeoop.progressproject
 
 
+import android.widget.Toast
 import androidx.annotation.NonNull
 import androidx.room.Entity
 import androidx.room.Ignore
@@ -276,6 +277,7 @@ class Progress {
         }
 
         this.targetCount += this.targetNum
+        this.passedPeriod += 1
     }
 
 }

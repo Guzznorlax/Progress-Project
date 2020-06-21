@@ -115,21 +115,6 @@ class CreateProgressFragment : Fragment() {
                     targetnumber,
                     usetargetnum.toBoolean()
                 )
-
-            //            if(usetargetuumTextInputLayout.isChecked ){
-            //                //view.findViewById<TextView>(R.id.edittext_progress_currentnumber).visibility = View.INVISIBLE
-            //                view.findViewById<EditText>(R.id.edittext_progress_currentnumber).visibility = View.VISIBLE
-            //                view.findViewById<CheckBox>(R.id.check_box_progress_complete).visibility = View.INVISIBLE
-            //                println("hillo")
-            //            }else{
-            //                view.findViewById<EditText>(R.id.edittext_progress_currentnumber).visibility = View.INVISIBLE
-            //                view.findViewById<CheckBox>(R.id.check_box_progress_complete).visibility = View.VISIBLE
-            //                println("goodmorning")
-            //            }
-
-
-
-
             findNavController().navigate(action)
         }
 

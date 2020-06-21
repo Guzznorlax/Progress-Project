@@ -53,33 +53,28 @@ class FirstFragment : Fragment() {
                 findNavController().navigate(R.id.action_FirstFragment_to_createProgressFragment)
             }
 
-        val adapter = context?.let { ProgressListAdapter(it) }
+        // Get a new or existing ViewModel from the ViewModelProvider.
+        progressViewModel = ViewModelProvider(this).get(ProgressViewModel::class.java)
+
+        val adapter = context?.let {
+            ProgressListAdapter(it, object : ProgressListAdapter.ProgressStatusUpdateListener {
+                override fun onProgressStatusUpdated(progress: Progress) {
+                    progressViewModel.update(progress)
+                }
+            })
+        }
+
         val recyclerView = view.findViewById<RecyclerView>(R.id.recycler_view_progress_list)
 
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(context)
-        // Get a new or existing ViewModel from the ViewModelProvider.
-        progressViewModel = ViewModelProvider(this).get(ProgressViewModel::class.java)
 
+        // Update the cached copy of the progresses in the adapter.
         progressViewModel.allProgresses.observe(viewLifecycleOwner, Observer { progresses ->
-            // Update the cached copy of the progresses in the adapter.
             progresses?.let {
                 adapter?.setProgress(it)
             }
         })
-
-//        if(createProgressArgs.progressUsetargenum){
-//            view.findViewById<EditText>(R.id.edittext_progress_currentnumber).visibility = View.VISIBLE
-//            view.findViewById<CheckBox>(R.id.check_box_progress_complete).visibility = View.INVISIBLE
-//            println("hillo")
-//        }else{
-//            if(view.findViewById<EditText>(R.id.edittext_progress_currentnumber)!= null){
-//                view.findViewById<EditText>(R.id.edittext_progress_currentnumber).visibility = View.INVISIBLE
-//                view.findViewById<CheckBox>(R.id.check_box_progress_complete).visibility = View.VISIBLE
-//                println("goodmorning")
-//            }
-//        }
-
 
         if (createProgressArgs.progressName != " " && createProgressArgs.progressName != "") {
             var newProgress = Progress(
@@ -91,8 +86,10 @@ class FirstFragment : Fragment() {
                 targetNum = createProgressArgs.progressTargetNum
             )
 
-            println(createProgressArgs.progressName + createProgressArgs.progressDescription + createProgressArgs.progressPeriod + createProgressArgs.progressTargetCompleted +
-                    createProgressArgs.progressUsetargenum + createProgressArgs.progressTargetNum)
+            println(
+                createProgressArgs.progressName + createProgressArgs.progressDescription + createProgressArgs.progressPeriod + createProgressArgs.progressTargetCompleted +
+                        createProgressArgs.progressUsetargenum + createProgressArgs.progressTargetNum
+            )
             progressViewModel.insert(newProgress)
         }
 
