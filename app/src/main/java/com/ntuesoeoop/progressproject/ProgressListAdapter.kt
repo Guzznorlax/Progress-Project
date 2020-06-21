@@ -51,8 +51,6 @@ class ProgressListAdapter internal constructor(
         val isCompleted: CheckBox = itemView.findViewById(R.id.check_box_progress_complete)
         val currentNumber: EditText = itemView.findViewById(R.id.edittext_progress_currentnumber)
         val updateNumberBtn: Button = itemView.findViewById(R.id.button_update_currentnum)
-
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProgressViewHolder {
@@ -73,9 +71,9 @@ class ProgressListAdapter internal constructor(
         val progressName = current.getName()
         val progressDescription = current.getDescription()
         val progressPeriod = current.getPeriod().toString()
-        val progressTargetCompleted = current.getPeriod().toString()
+        val progressTargetCompleted = current.getTargetCompleted().toString()
         val progressUseTargetNum = current.getUseTargetNum()
-        val progressTargetNum = current.getPeriod()
+        val progressTargetNum = current.getTargetNum()
         val progressPassedPeriod = current.getPassedPeriod().toString()
         val progressCurrentCompleted = current.getCurrentCompleted().toString()
         val progressCount = current.getCount().toString()
@@ -92,6 +90,7 @@ class ProgressListAdapter internal constructor(
         holder.levelTextView.text = current.getLevel().toString()
         holder.streakTextView.text = current.getStreak().toString()
         holder.countTextView.text = current.getCompletedRatio()
+        println("${progressName} target ${progressTargetCompleted}")
 
         //make the card change to number mode
         if (progressUseTargetNum) {
