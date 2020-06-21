@@ -37,7 +37,7 @@ class Progress {
 
     private var level: Int  // 等級
 
-    private var exp: Float // 累積分數  TODO 決定計分方式
+    private var exp: Int // 累積分數  TODO 決定計分方式
 
     private var streak: Int  // 連續達成週期數
 
@@ -49,15 +49,16 @@ class Progress {
 
     private var period: Int  // 週期
     private var passedPeriod: Int  // 經過週期
+    private var passedDayInPeriod : Int   //經過天數(周期內)
     private var currentCompleted: Int  // 目前達成日數（本週期間）
     private var targetCompleted: Int  // 目標達成日數 （週期內應完成天數）
 
     private var useTargetNum: Boolean  // 是否紀錄數字
     private var targetNum: Int // 目標數量
-    private var currentNum: Float  // 目前數量
+    private var currentNum: Int  // 目前數量
 
-    private var count: Float  // 總共數量
-    private var targetCount: Float  // 總共應達成數量 -> targetNum * passedPeriod * passedPeriod
+    private var count: Int  // 總共完成數量
+    private var targetCount: Int  // 總共應達成數量 -> targetNum * passedPeriod * targetCompleted
 
     private var updatedAt: String?
     private var createdAt: String?
@@ -83,13 +84,14 @@ class Progress {
         this.description = description
 
         this.level = 0
-        this.exp = 0f
+        this.exp = 0
 
         this.streak = 0
         this.maxStreak = 0
 
         this.period = period
         this.passedPeriod = 0
+        this.passedDayInPeriod = 0
         this.currentCompleted = 0
 
         this.isCompleted = isCompleted
@@ -98,14 +100,14 @@ class Progress {
 
         this.useTargetNum = useTargetNum
         this.targetNum = targetNum
-        this.currentNum = 0f
-        this.count = 0f
-        this.targetCount = 0f
+        this.currentNum = 0
+        this.count = 0
+        this.targetCount = targetNum
 
         this.createdAt = createdAt
         this.updatedAt = updatedAt
-//        this.createdAt = this.getFormattedCurrentTime()
-//        this.updatedAt = this.getFormattedCurrentTime()
+        this.createdAt = this.getFormattedCurrentTime()
+        this.updatedAt = this.getFormattedCurrentTime()
 
         this.isEnded = false
 
@@ -117,11 +119,11 @@ class Progress {
         return this.name
     }
 
-    public fun getExp(): Float {
+    public fun getExp(): Int {
         return this.exp
     }
 
-    public fun setExp(exp: Float) {
+    public fun setExp(exp: Int) {
         this.exp = exp
     }
 
@@ -135,6 +137,14 @@ class Progress {
 
     public fun setPassedPeriod(passedPeriod: Int) {
         this.passedPeriod = passedPeriod
+    }
+
+    public fun getPassedDayInPeriod(): Int {
+        return this.passedDayInPeriod
+    }
+
+    public fun setPassedDayInPeriod(passedDayInPeriod: Int) {
+        this.passedDayInPeriod = passedDayInPeriod
     }
 
     public fun getCurrentCompleted(): Int {
@@ -201,11 +211,11 @@ class Progress {
         this.level += 1
     }
 
-    public fun getCount(): Float {
+    public fun getCount(): Int {
         return this.count
     }
 
-    public fun setCount(count: Float) {
+    public fun setCount(count: Int) {
         if (count >= 0) {
             this.count = count
         }
@@ -236,14 +246,14 @@ class Progress {
     }
 
     public fun getCompletedRatio(): String {
-        return "{${this.totalCompleted} / ${this.targetCompleted}}"
+        return "{${this.currentCompleted} / ${this.targetCompleted}}"
     }
 
-    public fun getTargetCount(): Float {
+    public fun getTargetCount(): Int {
         return this.targetCount
     }
 
-    public fun setTargetCount(targetCount: Float) {
+    public fun setTargetCount(targetCount: Int) {
         if (targetCount >= 0) {
             this.targetCount = targetCount
         }
@@ -265,12 +275,12 @@ class Progress {
         this.targetNum = max(targetNum, 0)
     }
 
-    public fun getCurrentNum(): Float {
+    public fun getCurrentNum(): Int {
         return this.currentNum
     }
 
-    public fun setCurrentNum(currentNum: Float) {
-        this.currentNum = max(currentNum, 0f)
+    public fun setCurrentNum(currentNum: Int) {
+        this.currentNum = max(currentNum, 0)
     }
 
     public fun getIsEnded(): Boolean {
@@ -344,26 +354,64 @@ class Progress {
     public fun evaluate(): Boolean {
         val passedDay = this.getPassedDay()
         println("Evaluating ${this.name} Passed Days: ${passedDay.toString()}")
-        if (passedDay > 0) {
+        if(passedDay > 0){
+            if(this.useTargetNum && this.targetNum > 0){
+                this.isCompleted = this.currentNum >= this.targetNum
+            }
+            if(passedDay > 1){
+                //passedDay > 1
+                if(this.isCompleted){
+                    this.streak = 0
+                    this.totalCompleted += 1
+                    this.currentCompleted += 1
+                    this.isCompleted = false
+                }else{
+                    this.streak = 0
+                }
+                this.currentNum = 0
+                this.passedDayInPeriod += passedDay.toInt()
+                this.count += this.count
+            }else{
+                //passedDay = 1
+                if (this.isCompleted) {
+                    this.streak += 1
+                    this.totalCompleted += 1
+                    this.currentCompleted += 1
+                    this.updateMaxStreak()
+                    this.isCompleted = false
+                } else {
+                    this.streak = 0
+                }
 
-            if (this.isCompleted) {
-                this.streak += 1
-                this.totalCompleted += 1
-                this.updateMaxStreak()
-                this.isCompleted = false
-
-            } else {
-                this.streak = 0
+                currentNum = 0
+                this.count += this.count
+                this.passedDayInPeriod += this.passedDayInPeriod
             }
 
-            this.targetCount += this.targetNum
-            this.passedPeriod += 1
-            this.targetCount += this.targetNum
+            //calculate exp and level
+            if(this.passedDayInPeriod>= this.period){
+                //exp get upgraded!
+                if(this.currentCompleted >= this.targetCompleted){
+                    this.exp += this.period
+
+                    //level get upgraded!
+                    if(this.exp>=1){
+                        val levelupgrade : Int = this.exp.toInt()/1
+                        for(i in 1..levelupgrade){
+                            this.level ++
+                        }
+                    }
+                }
+                this.passedPeriod += 1
+                //this.passedDayInPeriod = 0
+                this.currentCompleted = 0
+                this.targetCount = (this.targetNum * this.passedPeriod * this.targetCompleted).toInt()
+            }
 
             this.setUpdatedTime()
-
             return true
         }
+        //passedDay = 0
         return false
     }
 }
