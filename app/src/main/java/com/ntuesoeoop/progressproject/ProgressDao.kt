@@ -1,10 +1,9 @@
 package com.ntuesoeoop.progressproject
 
-import android.database.Observable
+
 import androidx.room.*
-import java.util.*
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.Observer
+
 
 @Dao
 interface ProgressDao {

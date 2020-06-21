@@ -9,7 +9,6 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.textfield.TextInputEditText
 import kotlinx.android.synthetic.main.create_progress.*
-import kotlinx.android.synthetic.main.progress_normal_card.*
 
 
 // TODO: Rename parameter arguments, choose names that match

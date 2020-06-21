@@ -1,7 +1,6 @@
 package com.ntuesoeoop.progressproject
 
-import android.app.AlarmManager
-import android.content.SharedPreferences
+
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -14,9 +13,6 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import kotlinx.android.synthetic.main.progress_normal_card.*
-import java.util.*
-
 
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.

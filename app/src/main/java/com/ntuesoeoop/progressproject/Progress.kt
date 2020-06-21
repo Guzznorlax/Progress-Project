@@ -2,22 +2,15 @@ package com.ntuesoeoop.progressproject
 
 
 import android.os.Build
-import android.text.format.DateUtils
-import android.widget.Toast
 import androidx.annotation.NonNull
 import androidx.annotation.RequiresApi
 import androidx.room.Entity
 import androidx.room.Ignore
 import androidx.room.PrimaryKey
-import java.text.SimpleDateFormat
-import java.time.Duration
-import java.time.Instant
 import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
 import java.time.temporal.ChronoUnit
 import java.util.*
 import kotlin.math.max
-import kotlin.time.TimeSource
 
 
 @Entity(tableName = Progress.TABLE_NAME)
@@ -102,12 +95,12 @@ class Progress {
         this.targetNum = targetNum
         this.currentNum = 0
         this.count = 0
-        this.targetCount = targetNum
+        this.targetCount = targetNum * targetCompleted
 
         this.createdAt = createdAt
         this.updatedAt = updatedAt
-        this.createdAt = this.getFormattedCurrentTime()
-        this.updatedAt = this.getFormattedCurrentTime()
+        //this.createdAt = this.getFormattedCurrentTime()
+        //this.updatedAt = this.getFormattedCurrentTime()
 
         this.isEnded = false
 
@@ -383,13 +376,13 @@ class Progress {
                     this.streak = 0
                 }
 
-                currentNum = 0
+                this.currentNum = 0
                 this.count += this.count
-                this.passedDayInPeriod += this.passedDayInPeriod
+                this.passedDayInPeriod += 1
             }
 
             //calculate exp and level
-            if(this.passedDayInPeriod>= this.period){
+            if(this.passedDayInPeriod >= this.period){
                 //exp get upgraded!
                 if(this.currentCompleted >= this.targetCompleted){
                     this.exp += this.period
@@ -402,8 +395,11 @@ class Progress {
                         }
                     }
                 }
-                this.passedPeriod += 1
-                //this.passedDayInPeriod = 0
+                val passedDayjudge : Int = this.passedDayInPeriod/period
+                for(i in 1..passedDayjudge){
+                    this.passedPeriod += 1
+                }
+                this.passedDayInPeriod = 0
                 this.currentCompleted = 0
                 this.targetCount = (this.targetNum * this.passedPeriod * this.targetCompleted).toInt()
             }
