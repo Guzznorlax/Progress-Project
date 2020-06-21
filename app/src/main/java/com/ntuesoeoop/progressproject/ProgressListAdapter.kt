@@ -1,9 +1,7 @@
 package com.ntuesoeoop.progressproject
 
 import android.content.Context
-import android.content.SharedPreferences
 import android.os.Build
-import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,7 +13,6 @@ import androidx.annotation.RequiresApi
 import android.widget.*
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.snackbar.Snackbar
 
 
 class ProgressListAdapter internal constructor(

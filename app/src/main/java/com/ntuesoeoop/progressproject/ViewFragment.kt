@@ -10,7 +10,6 @@ import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import org.w3c.dom.Text
 
 class ViewFragment : Fragment() {
     private val progressArgs: ViewFragmentArgs by navArgs()

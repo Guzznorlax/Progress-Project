@@ -1,6 +1,5 @@
 package com.ntuesoeoop.progressproject
 
-import android.app.Application
 import androidx.annotation.WorkerThread
 import androidx.lifecycle.LiveData
 
