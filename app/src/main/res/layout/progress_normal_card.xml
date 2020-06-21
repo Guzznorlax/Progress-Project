@@ -36,8 +36,8 @@
 
         <TextView
             android:id="@+id/text_view_progress_streak"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="24dp"
+            android:layout_height="20dp"
             android:text="@string/int_place_holder"
             app:layout_constraintStart_toEndOf="@+id/icon_progress_streak"
             app:layout_constraintTop_toTopOf="@+id/text_view_progress_level" />
@@ -54,7 +54,8 @@
             app:layout_constraintHorizontal_bias="0.94"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:visibility="visible"/>
+            android:visibility="invisible"
+            />
 
         <EditText
             android:id="@+id/edittext_progress_currentnumber"
@@ -66,50 +67,49 @@
             android:inputType="numberDecimal"
             android:text="0"
             android:textSize="18sp"
-            android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.241" />
+            app:layout_constraintVertical_bias="0.241"
+            android:visibility="invisible" />
 
         <ImageView
             android:id="@+id/icon_progress_level"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="64dp"
-            android:layout_marginBottom="24dp"
+            android:layout_width="68dp"
+            android:layout_height="74dp"
+            android:layout_marginTop="32dp"
             android:scaleX="@dimen/card_view_streak_icon_scale"
             android:scaleY="@dimen/card_view_streak_icon_scale"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@android:drawable/ic_menu_compass" />
+            app:srcCompat="@drawable/level" />
 
         <ImageView
             android:id="@+id/icon_progress_streak"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
             android:scaleX="@dimen/card_view_streak_icon_scale"
             android:scaleY="@dimen/card_view_streak_icon_scale"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.3"
+            app:layout_constraintHorizontal_bias="0.28"
             app:layout_constraintStart_toStartOf="@+id/icon_progress_level"
             app:layout_constraintTop_toTopOf="@+id/icon_progress_level"
-            app:srcCompat="@android:drawable/ic_menu_compass" />
+            app:srcCompat="@drawable/streak" />
 
         <ImageView
             android:id="@+id/icon_progress_completed_icon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
             android:scaleX="@dimen/card_view_streak_icon_scale"
             android:scaleY="@dimen/card_view_streak_icon_scale"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.6"
             app:layout_constraintStart_toStartOf="@+id/icon_progress_level"
             app:layout_constraintTop_toTopOf="@+id/icon_progress_level"
-            app:srcCompat="@android:drawable/ic_menu_compass" />
+            app:srcCompat="@drawable/complete" />
 
         <TextView
             android:id="@+id/text_view_progress_completed_ratio"
@@ -128,11 +128,12 @@
             android:layout_marginRight="8dp"
             android:text="update"
             android:textSize="10sp"
-            android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/edittext_progress_currentnumber"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintVertical_bias="0.0"
+            android:visibility="invisible"
+            />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

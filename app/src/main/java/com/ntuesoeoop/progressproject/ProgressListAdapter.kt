@@ -12,10 +12,10 @@ import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.TextView
 import androidx.annotation.RequiresApi
+import android.widget.*
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
-import org.koin.experimental.builder.getArguments
-import java.util.*
+import com.google.android.material.snackbar.Snackbar
 
 
 class ProgressListAdapter internal constructor(
@@ -84,11 +84,31 @@ class ProgressListAdapter internal constructor(
         holder.countTextView.text = current.getCompletedRatio()
 
         //make the card change to number mode
-        if (current.getUseTargetNum()) {
+        if (progressUseTargetNum) {
             holder.currentNumber.visibility = View.VISIBLE
-            holder.isCompleted.visibility = View.INVISIBLE
             holder.updateNumberBtn.visibility = View.VISIBLE
+            holder.isCompleted.visibility = View.INVISIBLE
+            println("$progressName Number mode")
+        }else{
+            holder.currentNumber.visibility = View.INVISIBLE
+            holder.updateNumberBtn.visibility = View.INVISIBLE
+            holder.isCompleted.visibility = View.VISIBLE
+            println("$progressName Simple mode")
         }
+
+        //set whether it is completed
+        holder.isCompleted.setOnClickListener {
+
+            if (holder.isCompleted.isChecked) {
+                current.setIsCompleted(true)
+            } else {
+                current.setIsCompleted(false)
+            }
+            setProgress(progresses)
+            progressStatusUpdateListener.onProgressStatusUpdated(current)
+            //Toast.makeText(this,"foot",Toast.LENGTH_LONG)
+        }
+
 
         //set the value of currentNum
         holder.updateNumberBtn.setOnClickListener {
@@ -103,6 +123,7 @@ class ProgressListAdapter internal constructor(
                 current.setCurrentNum(currentNum)
 
             }
+
             progressStatusUpdateListener.onProgressStatusUpdated(current)
         }
 
@@ -133,8 +154,6 @@ class ProgressListAdapter internal constructor(
         holder.countTextView.text = current.getCompletedRatio()
         holder.isCompleted.isChecked = current.getIsCompleted()
         holder.currentNumber.setText(current.getCurrentNum().toString())
-        // println("${current.getName()} ${current.getDescription()} ${current.getUpdatedAt()}")
-
 
         //set whether it is completed
         holder.isCompleted.setOnClickListener {
@@ -161,7 +180,6 @@ class ProgressListAdapter internal constructor(
         this.progresses = progresses
         notifyDataSetChanged()
     }
-
 
 }
 
