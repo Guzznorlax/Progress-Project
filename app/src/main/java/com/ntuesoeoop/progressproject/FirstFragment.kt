@@ -26,15 +26,6 @@ class FirstFragment : Fragment() {
     private lateinit var progressViewModel: ProgressViewModel
     private val createProgressArgs: FirstFragmentArgs by navArgs()
 
-    // unused
-    companion object {
-        fun getInstance(progressTitle: String, progressDescription: String?): FirstFragment {
-            val fragment = FirstFragment()
-            fragment.createProgress(progressTitle, progressDescription)
-            return fragment
-        }
-    }
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -76,18 +67,6 @@ class FirstFragment : Fragment() {
             }
         })
 
-//        if(createProgressArgs.progressUsetargenum){
-//            view.findViewById<EditText>(R.id.edittext_progress_currentnumber).visibility = View.VISIBLE
-//            view.findViewById<CheckBox>(R.id.check_box_progress_complete).visibility = View.INVISIBLE
-//            println("hillo")
-//        }else{
-//            if(view.findViewById<EditText>(R.id.edittext_progress_currentnumber)!= null){
-//                view.findViewById<EditText>(R.id.edittext_progress_currentnumber).visibility = View.INVISIBLE
-//                view.findViewById<CheckBox>(R.id.check_box_progress_complete).visibility = View.VISIBLE
-//                println("goodmorning")
-//            }
-//        }
-
 
         if (createProgressArgs.progressName != " " && createProgressArgs.progressName != "") {
             var newProgress = Progress(
@@ -96,7 +75,8 @@ class FirstFragment : Fragment() {
                 period = createProgressArgs.progressPeriod,
                 targetCompleted = createProgressArgs.progressTargetCompleted,
                 useTargetNum = createProgressArgs.progressUsetargenum,
-                targetNum = createProgressArgs.progressTargetNum
+                targetNum = createProgressArgs.progressTargetNum,
+                createdAt = ISODate().getFormattedCurrentTime()
             )
 
             println(
@@ -106,40 +86,6 @@ class FirstFragment : Fragment() {
             progressViewModel.insert(newProgress)
         }
 
-
-        val cal = Calendar.getInstance()
-        val currentDay = cal.get(Calendar.DAY_OF_MONTH)
-        val sharedPreferences: SharedPreferences? = activity?.getSharedPreferences("appInfo", 0)
-        val lastDay = sharedPreferences?.getInt("day", 0)
-        if (lastDay != currentDay) {
-            val editor = sharedPreferences?.edit()
-            editor?.putInt("day", currentDay)
-            editor?.commit()
-            // put the once a day code here
-            println("hihi" + currentDay)
-
-        }
-
-
-        //  測試用(minute)
-        //        val cal = Calendar.getInstance()
-        //        val currentminute = cal.get(Calendar.MINUTE)
-        //        val sharedPreferences: SharedPreferences? = activity?.getSharedPreferences("appInfo", 0)
-        //        val lastminute = sharedPreferences?.getInt("minute", 0)
-        //        if (lastminute != currentminute) {
-        //            val editor = sharedPreferences?.edit()
-        //            editor?.putInt("minute", currentminute)
-        //            editor?.commit()
-        //            // put the once a minute code here
-        //            println("hihi" + currentminute)
-        //
-        //        }
-
-    }
-
-    fun createProgress(title: String, description: String?) {
-        var newProgress = Progress(title)
-        progressViewModel.insert(newProgress)
     }
 
 }

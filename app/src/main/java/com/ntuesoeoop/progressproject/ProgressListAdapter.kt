@@ -2,6 +2,7 @@ package com.ntuesoeoop.progressproject
 
 import android.content.Context
 import android.content.SharedPreferences
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +11,7 @@ import android.widget.Button
 import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.TextView
+import androidx.annotation.RequiresApi
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import org.koin.experimental.builder.getArguments
@@ -51,10 +53,13 @@ class ProgressListAdapter internal constructor(
     }
 
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onBindViewHolder(holder: ProgressViewHolder, position: Int) {
         val current = progresses[position]
 
-        current.evaluate()
+        if (current.evaluate()){
+            progressStatusUpdateListener.onProgressStatusUpdated(current)
+        }
 
         val progressName = current.getName()
         val progressDescription = current.getDescription()
@@ -90,19 +95,13 @@ class ProgressListAdapter internal constructor(
             if (holder.currentNumber.visibility == View.VISIBLE) {
                 val currentnum: String = holder.currentNumber.text.toString()
                 var currentNum = 0F
+
                 if (currentnum != "") {
                     currentNum = currentnum.toFloat()
                 }
-                current.setCurrentNum(currentNum)
-                println(current.getCurrentNum())
 
-                //set whether it is completed
-                if (current.getCurrentNum() >= current.getTargetNum()) {
-                    current.setIsCompleted(true)
-                } else {
-                    current.setIsCompleted(false)
-                }
-                println(current.getIsCompleted())
+                current.setCurrentNum(currentNum)
+
             }
             progressStatusUpdateListener.onProgressStatusUpdated(current)
         }
@@ -134,6 +133,8 @@ class ProgressListAdapter internal constructor(
         holder.countTextView.text = current.getCompletedRatio()
         holder.isCompleted.isChecked = current.getIsCompleted()
         holder.currentNumber.setText(current.getCurrentNum().toString())
+        // println("${current.getName()} ${current.getDescription()} ${current.getUpdatedAt()}")
+
 
         //set whether it is completed
         holder.isCompleted.setOnClickListener {
@@ -148,64 +149,6 @@ class ProgressListAdapter internal constructor(
             progressStatusUpdateListener.onProgressStatusUpdated(current)
         }
 
-
-        // wrong
-        //        current.evaluate()
-        //        val calender = Calendar.getInstance()
-        //        val hour: String = calender.get(Calendar.HOUR_OF_DAY).toString()
-        //        val minute: String = calender.get(Calendar.MINUTE).toString()
-        //        val second: String = calender.get(Calendar.SECOND).toString()
-        //        if(hour == "1"&&minute == "54"&&second=="0"){
-        //            current.evaluate()
-        //            println("good")
-        //        }
-        //        println("hour" +hour+minute+second)
-
-
-        // wrong
-        //val alarmManager =
-        //            context.getSystemService(Context.ALARM_SERVICE) as? AlarmManager
-        //
-        //        PendingIntent
-        //        alarmMgr?.setInexactRepeating(
-        //            AlarmManager.ELAPSED_REALTIME,
-        //            SystemClock.elapsedRealtime() + AlarmManager.INTERVAL_HALF_HOUR,
-        //            AlarmManager.INTERVAL_HALF_HOUR,
-        //            alarmIntent
-        //        )
-
-
-        // wrong
-        //var alarmMgr : AlarmManager ? = null
-        //        lateinit var alarmIntent : PendingIntent
-        //
-        //        // Set the alarm to start at approximately 2:00 pm
-        //        val calendar : Calendar = Calendar . getInstance (). apply {
-        //            timeInMillis = System . currentTimeMillis ()
-        //            set ( Calendar.HOUR_OF_DAY , 14 )
-        //        }
-        //
-        //        alarmMgr ?. setInexactRepeating (
-        //            AlarmManager . RTC,
-        //            calendar . timeInMillis,
-        //            AlarmManager.INTERVAL_FIFTEEN_MINUTES ,
-        //            alarmIntent
-        //        )
-
-        // wrong
-        //val cal = Calendar.getInstance()
-        //        val currentDay = cal.get(Calendar.DAY_OF_MONTH)
-        //
-        //        val sharedPreferences: SharedPreferences = getSharedPreferences("appInfo", 0)
-        //        val lastDay = sharedPreferences.getInt("day", 0)
-        //
-        //        if (lastDay != currentDay) {
-        //            val editor = sharedPreferences.edit()
-        //            editor.putInt("weekOfYear", currentDay)
-        //            editor.commit()
-        //            // Your once a day code here
-        //            current.evaluate()
-        //        }
     }
 
 
