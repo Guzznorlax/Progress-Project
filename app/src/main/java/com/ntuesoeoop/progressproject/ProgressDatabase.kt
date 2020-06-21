@@ -75,7 +75,7 @@ abstract class ProgressDatabase : RoomDatabase() {
             progress = Progress("World!", period = 1, description = "aaaa", createdAt = "2020-06-20 14:57:14.283+0800", isCompleted = true)
             progressDao.insert(progress)
 
-            progress = Progress("Number MODE!", period = 8, description = "aaaa", createdAt = "2020-06-19 14:57:14.283+0800", isCompleted = true, useTargetNum = true, targetNum = 11)
+            progress = Progress("Number MODE!", period = 8, description = "aaaa", createdAt = "2020-06-19 14:57:14.283+0800", isCompleted = true, useTargetNum = true, targetNum = 11, targetCompleted = 4)
             progressDao.insert(progress)
         }
     }
