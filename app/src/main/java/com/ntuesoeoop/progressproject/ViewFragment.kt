@@ -10,6 +10,7 @@ import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import org.w3c.dom.Text
 
 class ViewFragment : Fragment() {
     private val progressArgs: ViewFragmentArgs by navArgs()
@@ -35,7 +36,7 @@ class ViewFragment : Fragment() {
         view.findViewById<TextView>(R.id.textview_progress_title).text = progressArgs.progressName
         view.findViewById<TextView>(R.id.textview_progress_description).text = progressArgs.progressDescription
 
-        view.findViewById<TextView>(R.id.textview_view_progress_period).text =  getString(R.string.period_days_placeholder, progressArgs.progressPeriod)
+        view.findViewById<TextView>(R.id.textview_view_progress_period).text = getString(R.string.period_days_placeholder, progressArgs.progressPeriod)
         view.findViewById<TextView>(R.id.textview_view_progress_passed_period).text = progressArgs.progressPassedPeriod
 
         view.findViewById<TextView>(R.id.textview_view_progress_target_completed).text = progressArgs.progressTargetCompleted
@@ -50,19 +51,12 @@ class ViewFragment : Fragment() {
         view.findViewById<TextView>(R.id.textview_view_progress_count).text = progressArgs.progessCount
         view.findViewById<TextView>(R.id.textview_view_progress_target_count).text = progressArgs.progressTargetCount
 
+        view.findViewById<TextView>(R.id.textView_view_progress_passed_day).text = getString(R.string.progress_passed_day_text, progressArgs.progressPassedDayInPeriod, progressArgs.progressPeriod)
 
         if(progressArgs.progressUsetargenum){
             view.findViewById<TextView>(R.id.textview_view_progress_target_number).text = progressArgs.progressTargetNumber
             view.findViewById<TextView>(R.id.textview_view_progress_current_number).text = progressArgs.progressCurrentNumber
         }else{
-//            view.findViewById<TextView>(R.id.textview_view_progress_target_number).visibility = View.INVISIBLE
-//            view.findViewById<TextView>(R.id.textview_view_progress_current_number).visibility = View.INVISIBLE
-//            view.findViewById<TextView>(R.id.textView4).visibility = View.INVISIBLE
-//            view.findViewById<TextView>(R.id.textView15).visibility = View.INVISIBLE
-//            view.findViewById<TextView>(R.id.textview_view_progress_count).visibility = View.INVISIBLE
-//            view.findViewById<TextView>(R.id.textView16).visibility = View.INVISIBLE
-//            view.findViewById<TextView>(R.id.textView17).visibility = View.INVISIBLE
-//            view.findViewById<TextView>(R.id.textview_view_progress_target_count).visibility = View.INVISIBLE
             view.findViewById<CardView>(R.id.cardview_view_progress_count).visibility = View.INVISIBLE
             view.findViewById<CardView>(R.id.cardview_view_progress_number).visibility = View.INVISIBLE
         }

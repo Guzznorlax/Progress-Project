@@ -36,11 +36,11 @@ class MainActivity : AppCompatActivity() {
         // as you specify a parent activity in AndroidManifest.xml.
         return when (item.itemId) {
             R.id.action_settings -> {
-                Toast.makeText(this, "Lets Gooooooooo", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "Lets Gooooooooo!!!", Toast.LENGTH_LONG).show();
                 true
             }
             R.id.about_me -> {
-                Toast.makeText(this, "I am your helper, Demo", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "我是你最好的助手Demo", Toast.LENGTH_SHORT).show();
                 true
             }
             else -> super.onOptionsItemSelected(item)

@@ -23,6 +23,15 @@ class ProgressListAdapter internal constructor(
     progressStatusUpdateListener: ProgressStatusUpdateListener
 ) :
     RecyclerView.Adapter<ProgressListAdapter.ProgressViewHolder>() {
+    private var context : Context = context
+
+    fun ProgressListAdapter(context: Context){
+        this.context = context
+    }
+    fun showToast(message: String) {
+        Toast.makeText(context, message, Toast.LENGTH_LONG).show()
+    }
+
     private val inflater: LayoutInflater = LayoutInflater.from(context)
     private var progresses = emptyList<Progress>()
     private val progressStatusUpdateListener: ProgressStatusUpdateListener =
@@ -75,6 +84,7 @@ class ProgressListAdapter internal constructor(
         val progressCurrentNumber = current.getCurrentNum().toString()
         val progressStrike = current.getStreak().toString()
         val progressMaxStrike = current.getMaxStreak().toString()
+        val progressPassedDay = current.getPassedDayInPeriod().toString()
 
 
         //make the text be on the card
@@ -101,12 +111,12 @@ class ProgressListAdapter internal constructor(
 
             if (holder.isCompleted.isChecked) {
                 current.setIsCompleted(true)
+                showToast("Mission Completed! Good Job!")
             } else {
                 current.setIsCompleted(false)
             }
             setProgress(progresses)
             progressStatusUpdateListener.onProgressStatusUpdated(current)
-            //Toast.makeText(this,"foot",Toast.LENGTH_LONG)
         }
 
 
@@ -114,10 +124,10 @@ class ProgressListAdapter internal constructor(
         holder.updateNumberBtn.setOnClickListener {
             if (holder.currentNumber.visibility == View.VISIBLE) {
                 val currentnum: String = holder.currentNumber.text.toString()
-                var currentNum = 0F
+                var currentNum = 0
 
                 if (currentnum != "") {
-                    currentNum = currentnum.toFloat()
+                    currentNum = currentnum.toInt()
                 }
 
                 current.setCurrentNum(currentNum)
@@ -142,7 +152,8 @@ class ProgressListAdapter internal constructor(
                 progressTargetNumber,
                 progressCurrentNumber,
                 progressStrike,
-                progressMaxStrike
+                progressMaxStrike,
+                progressPassedDay
             )
 
             it.findNavController().navigate(action)
@@ -160,6 +171,7 @@ class ProgressListAdapter internal constructor(
 
             if (holder.isCompleted.isChecked) {
                 current.setIsCompleted(true)
+                showToast("Mission Completed! Good Job!")
             } else {
                 current.setIsCompleted(false)
             }
