@@ -34,12 +34,4 @@ class ProgressRepo(private val progressDao: ProgressDao) {
         progressDao.deleteAll()
     }
 
-//    @WorkerThread
-//    suspend fun evaluateAll() {
-//        allProgresses.value?.forEach {
-//            it.evaluate()
-//            progressDao.update(it)
-//        }
-//
-//    }
 }

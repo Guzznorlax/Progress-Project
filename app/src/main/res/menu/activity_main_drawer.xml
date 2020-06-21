@@ -1,17 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     tools:showIn="navigation_view">
 
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/username"
-            android:title="username" />
+            android:title="@string/username" />
         <item
-            android:id="@+id/vip_level"
-            android:title="vip_level" />
+            android:id="@+id/information"
+            android:title="3 things I can do" />
         <item
-            android:id="@+id/count"
-            android:title="count" />
+            android:id="@+id/information1"
+            android:title="1. record things by days per a period of time" />
+        <item
+            android:id="@+id/information2"
+            android:title="2. record things by how much a day" />
+        <item
+            android:id="@+id/information3"
+            android:title="3. provide you a chance to develop good habit!" />
     </group>
+
+
 </menu>

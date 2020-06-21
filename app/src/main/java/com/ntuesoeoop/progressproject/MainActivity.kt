@@ -1,31 +1,13 @@
 package com.ntuesoeoop.progressproject
 
-import android.content.SharedPreferences
+import android.content.Context
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-import androidx.navigation.Navigation
-
-
 import androidx.navigation.ui.AppBarConfiguration
-
-
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.app_bar_main.*
-import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.Navigation.findNavController
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.fragment_first.*
-import java.util.*
 
 
 class MainActivity : AppCompatActivity() {
@@ -34,27 +16,12 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        //create tool bar
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
-
-
-        val cal = Calendar.getInstance()
-        val currentDay = cal.get(Calendar.MINUTE)
-        val sharedPreferences: SharedPreferences = getSharedPreferences("appInfo", 0)
-        val lastDay = sharedPreferences.getInt("minute", 0)
-        if (lastDay != currentDay) {
-            val editor = sharedPreferences.edit()
-            editor.putInt("minute", currentDay)
-            editor.commit()
-            // Your once a day code here
-            Toast.makeText(this, "Hello", Toast.LENGTH_SHORT).show()
-        }
-
-
-
-
-
     }
+
 
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -69,7 +36,7 @@ class MainActivity : AppCompatActivity() {
         // as you specify a parent activity in AndroidManifest.xml.
         return when (item.itemId) {
             R.id.action_settings -> {
-                Toast.makeText(this, "you entered settings", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Lets Gooooooooo", Toast.LENGTH_LONG).show();
                 true
             }
             R.id.about_me -> {

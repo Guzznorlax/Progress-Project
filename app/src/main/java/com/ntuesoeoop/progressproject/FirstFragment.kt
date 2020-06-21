@@ -67,7 +67,6 @@ class FirstFragment : Fragment() {
             }
         })
 
-
         if (createProgressArgs.progressName != " " && createProgressArgs.progressName != "") {
             var newProgress = Progress(
                 createProgressArgs.progressName,

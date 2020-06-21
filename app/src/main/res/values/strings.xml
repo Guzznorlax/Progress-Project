@@ -54,4 +54,6 @@
 
     <string name="my_view">btn_my_view</string>
     <string name="mycontent">mycontent</string>
+    <string name="what_can_i_do">what can I do</string>
+    <string name="username">username</string>
 </resources>

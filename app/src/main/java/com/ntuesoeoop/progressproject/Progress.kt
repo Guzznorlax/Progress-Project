@@ -3,6 +3,7 @@ package com.ntuesoeoop.progressproject
 
 import android.os.Build
 import android.text.format.DateUtils
+import android.widget.Toast
 import androidx.annotation.NonNull
 import androidx.annotation.RequiresApi
 import androidx.room.Entity
@@ -355,6 +356,8 @@ class Progress {
                 this.streak = 0
             }
 
+            this.targetCount += this.targetNum
+            this.passedPeriod += 1
             this.targetCount += this.targetNum
 
             this.setUpdatedTime()
