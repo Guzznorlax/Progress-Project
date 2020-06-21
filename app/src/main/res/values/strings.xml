@@ -31,21 +31,21 @@
     <string name="button_create_progress">Create</string>
     <string name="text_title_place_holder">Title</string>
     <string name="text_description_place_holder">description</string>
-    <string name="text_period_place_holder">Period</string>
-    <string name="text_passedperiod_place_holder">Passed Periods</string>
-    <string name="text_currentcomplete_place_holder">Current Completed</string>
-    <string name="text_targetcompleted_place_holder">Target Completed</string>
-    <string name="text_maxstrike_place_holder">Max Strike</string>
-    <string name="text_strike_place_holder">Strike</string>
+    <string name="text_period_place_holder">週期</string>
+    <string name="text_passedperiod_place_holder">已經過</string>
+    <string name="text_currentcomplete_place_holder">總達成數</string>
+    <string name="text_targetcompleted_place_holder">總應達成數</string>
+    <string name="text_maxstrike_place_holder">最高紀錄</string>
+    <string name="text_strike_place_holder">連續達成</string>
     <string name="text_target_place_holder">target</string>
-    <string name="text_targetnum_place_holder">Target Number</string>
-    <string name="text_currentnum_place_holder">Current Number</string>
-    <string name="text_count_place_holder">count</string>
+    <string name="text_targetnum_place_holder">目標數量</string>
+    <string name="text_currentnum_place_holder">目前數量</string>
+    <string name="text_count_place_holder">總已做數量</string>
     <string name="username_place_holder">username</string>
     <string name="test_iscompleted_place_holder">iscompleted</string>
     <string name="test_totalcompleted_place_holder">totalcompleted</string>
     <string name="viplevel_place_holder">viplevel</string>
-    <string name="text_targetcount_place_holder">targetcount</string>
+    <string name="text_targetcount_place_holder">總應做數量</string>
     <string name="retrun_place_holder">return</string>
     <string name="button_return">return</string>
 
@@ -56,4 +56,6 @@
     <string name="mycontent">mycontent</string>
     <string name="what_can_i_do">what can I do</string>
     <string name="username">username</string>
+    <string name="slash">/</string>
+    <string name="period_days_placeholder">(%s天/週期)</string>
 </resources>

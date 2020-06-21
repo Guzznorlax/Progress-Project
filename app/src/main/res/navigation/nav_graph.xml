@@ -154,6 +154,7 @@
             android:name="progress_max_strike"
             app:argType="string"
             android:defaultValue="0" />
+
     </fragment>
 
 

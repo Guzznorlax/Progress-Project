@@ -145,7 +145,7 @@
             android:layout_marginTop="4dp"
             android:background="@drawable/check_mark"
             android:textSize="10sp"
-            android:visibility="visible"
+            android:visibility="invisible"
             app:layout_constraintEnd_toEndOf="@+id/edittext_progress_currentnumber"
             app:layout_constraintStart_toStartOf="@+id/edittext_progress_currentnumber"
             app:layout_constraintTop_toBottomOf="@+id/check_box_progress_complete" />
