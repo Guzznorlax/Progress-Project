@@ -17,6 +17,9 @@
             android:id="@+id/text_view_progress_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
             android:text="@string/string_placeholder"
             android:textSize="24sp"
             app:layout_constraintStart_toStartOf="parent"
@@ -26,9 +29,12 @@
             android:id="@+id/text_view_progress_level"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
             android:layout_marginTop="64dp"
             android:layout_marginBottom="32dp"
             android:text="@string/int_place_holder"
+            android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/icon_progress_level"
             app:layout_constraintTop_toTopOf="parent"
@@ -38,7 +44,10 @@
             android:id="@+id/text_view_progress_streak"
             android:layout_width="24dp"
             android:layout_height="20dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
             android:text="@string/int_place_holder"
+            android:textSize="18sp"
             app:layout_constraintStart_toEndOf="@+id/icon_progress_streak"
             app:layout_constraintTop_toTopOf="@+id/text_view_progress_level" />
 
@@ -77,63 +86,69 @@
 
         <ImageView
             android:id="@+id/icon_progress_level"
-            android:layout_width="68dp"
-            android:layout_height="74dp"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
             android:layout_marginTop="32dp"
             android:scaleX="@dimen/card_view_streak_icon_scale"
             android:scaleY="@dimen/card_view_streak_icon_scale"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/level" />
+            app:srcCompat="@drawable/thrust" />
 
         <ImageView
             android:id="@+id/icon_progress_streak"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
             android:scaleX="@dimen/card_view_streak_icon_scale"
             android:scaleY="@dimen/card_view_streak_icon_scale"
+            app:layout_constraintBottom_toBottomOf="@+id/icon_progress_level"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.28"
             app:layout_constraintStart_toStartOf="@+id/icon_progress_level"
             app:layout_constraintTop_toTopOf="@+id/icon_progress_level"
-            app:srcCompat="@drawable/streak" />
+            app:srcCompat="@drawable/electric" />
 
         <ImageView
             android:id="@+id/icon_progress_completed_icon"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
             android:scaleX="@dimen/card_view_streak_icon_scale"
             android:scaleY="@dimen/card_view_streak_icon_scale"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.6"
             app:layout_constraintStart_toStartOf="@+id/icon_progress_level"
             app:layout_constraintTop_toTopOf="@+id/icon_progress_level"
-            app:srcCompat="@drawable/complete" />
+            app:srcCompat="@drawable/confirmed" />
 
         <TextView
             android:id="@+id/text_view_progress_completed_ratio"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
             android:text="@string/string_ratio_place_holder"
+            android:textSize="18sp"
             app:layout_constraintStart_toEndOf="@+id/icon_progress_completed_icon"
             app:layout_constraintTop_toTopOf="@+id/text_view_progress_level" />
 
         <Button
             android:id="@+id/button_update_currentnum"
-            android:layout_width="61dp"
-            android:layout_height="37dp"
-            android:layout_marginTop="64dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            android:text="update"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="4dp"
+            android:background="@drawable/check_mark"
             android:textSize="10sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/edittext_progress_currentnumber"
-            app:layout_constraintVertical_bias="0.0"
-            android:visibility="invisible"
-            />
+            android:visibility="visible"
+            app:layout_constraintEnd_toEndOf="@+id/edittext_progress_currentnumber"
+            app:layout_constraintStart_toStartOf="@+id/edittext_progress_currentnumber"
+            app:layout_constraintTop_toBottomOf="@+id/check_box_progress_complete" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>
