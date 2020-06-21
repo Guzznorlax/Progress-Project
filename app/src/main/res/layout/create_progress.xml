@@ -34,7 +34,7 @@
                 android:id="@+id/text_input_progress_title"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:hint="@string/text_input_title_hint" />
+                android:hint="名稱" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -57,7 +57,7 @@
                 android:id="@+id/text_input_progress_description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/text_input_description_hint" />
+                android:hint="事件敘述" />
         </com.google.android.material.textfield.TextInputLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -96,7 +96,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="16dp"
-                android:text="@string/text_view_period_default"
+                android:text="週期"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -138,7 +138,7 @@
                 android:id="@+id/textView2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/text_view_target_complete_days"
+                android:text="周期內目標達成天數"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -179,7 +179,7 @@
             android:layout_marginLeft="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
-            android:text="@string/text_view_use_number_target"
+            android:text="數字模式"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -208,7 +208,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
-            android:text="@string/text_view_target_number"
+            android:text="目標數量"
             app:layout_constraintBottom_toBottomOf="@+id/switch_create_view_progress_number_mode"
             app:layout_constraintStart_toEndOf="@+id/switch_create_view_progress_number_mode"
             app:layout_constraintTop_toTopOf="@+id/switch_create_view_progress_number_mode"

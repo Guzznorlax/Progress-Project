@@ -50,6 +50,7 @@ class ViewFragment : Fragment() {
         view.findViewById<TextView>(R.id.textview_view_progress_target_count).text = progressArgs.progressTargetCount
 
 
+
         if(progressArgs.progressUsetargenum){
             view.findViewById<TextView>(R.id.textview_view_progress_target_number).text = progressArgs.progressTargetNumber
             view.findViewById<TextView>(R.id.textview_view_progress_current_number).text = progressArgs.progressCurrentNumber

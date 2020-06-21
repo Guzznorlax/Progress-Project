@@ -6,20 +6,17 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/username"
-            android:title="@string/username" />
-        <item
             android:id="@+id/information"
-            android:title="3 things I can do" />
+            android:title="我擁有兩種模式" />
         <item
             android:id="@+id/information1"
-            android:title="1. record things by days per a period of time" />
+            android:title="1.一般模式: 設定週期內需要完成的天數" />
         <item
             android:id="@+id/information2"
-            android:title="2. record things by how much a day" />
+            android:title="2.數字模式: 設定每日須完成的數量" />
         <item
             android:id="@+id/information3"
-            android:title="3. provide you a chance to develop good habit!" />
+            android:title="貼心提醒: 數字模式也包含一般模式的所有功能!" />
     </group>
 
 

@@ -154,6 +154,10 @@
             android:name="progress_max_strike"
             app:argType="string"
             android:defaultValue="0" />
+        <argument
+            android:name="progress_passedDayinPeriod"
+            app:argType="integer"
+            android:defaultValue="0" />
     </fragment>
 
 
