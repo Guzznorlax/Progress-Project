@@ -1,10 +1,19 @@
 package com.ntuesoeoop.progressproject
 
 
+import android.os.Build
+import android.text.format.DateUtils
 import androidx.annotation.NonNull
+import androidx.annotation.RequiresApi
 import androidx.room.Entity
 import androidx.room.Ignore
 import androidx.room.PrimaryKey
+import java.text.SimpleDateFormat
+import java.time.Duration
+import java.time.Instant
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+import java.time.temporal.ChronoUnit
 import java.util.*
 import kotlin.math.max
 import kotlin.time.TimeSource
@@ -49,6 +58,9 @@ class Progress {
     private var count: Float  // 總共數量
     private var targetCount: Float  // 總共應達成數量 -> targetNum * passedPeriod * passedPeriod
 
+    private var updatedAt: String?
+    private var createdAt: String?
+
     @Ignore
     private var isEnded: Boolean // 是否結束紀錄
 
@@ -59,7 +71,10 @@ class Progress {
         useTargetNum: Boolean = false,
         targetNum: Int = 0,
         description: String? = null,
-        targetCompleted : Int = 1
+        targetCompleted: Int = 1,
+        createdAt: String? = null,
+        updatedAt: String? = null,
+        isCompleted: Boolean = false
     ) {
         this.name = name
         this.id = 0
@@ -76,7 +91,7 @@ class Progress {
         this.passedPeriod = 0
         this.currentCompleted = 0
 
-        this.isCompleted = false
+        this.isCompleted = isCompleted
         this.totalCompleted = 0
         this.targetCompleted = targetCompleted
 
@@ -86,7 +101,14 @@ class Progress {
         this.count = 0f
         this.targetCount = 0f
 
+        this.createdAt = createdAt
+        this.updatedAt = updatedAt
+//        this.createdAt = this.getFormattedCurrentTime()
+//        this.updatedAt = this.getFormattedCurrentTime()
+
         this.isEnded = false
+
+        // println("${this.name} created at ${this.createdAt}")
 
     }
 
@@ -258,24 +280,87 @@ class Progress {
         this.isEnded = isEnded
     }
 
-    public fun evaluate() {
-
-        // no use
-        //        if (this.useTargetNum) {
-        //            if (this.currentNum >= this.targetNum) {
-        //               this.isCompleted = true
-        //            }
-        //        }
-
-        if (this.isCompleted) {
-            this.streak += 1
-            this.totalCompleted += 1
-            this.updateMaxStreak()
-        }else{
-            this.streak =0
-        }
-
-        this.targetCount += this.targetNum
+    fun setUpdatedAt(updatedAt: String?) {
+        this.updatedAt = updatedAt
     }
 
+    fun setCreatedAt(createdAt: String?) {
+        this.createdAt = createdAt
+    }
+
+    fun setUpdatedTime() {
+        this.updatedAt = this.getFormattedCurrentTime()
+        println("${this.name} Update time: ${this.updatedAt}")
+    }
+
+    fun setCreatedTime() {
+        this.createdAt = this.getFormattedCurrentTime()
+        println("${this.name} Create time: ${this.createdAt}")
+    }
+
+    fun getFormattedCurrentTime(): String {
+        var date = Date()
+        return ISODate().dateTimeFormatterSimple.format(date)
+    }
+
+    public fun getUpdatedAt(): String? {
+        return this.updatedAt
+    }
+
+    public fun getCreatedAt(): String? {
+        return this.createdAt
+    }
+
+    fun getUpdatedAtDate(): Date? {
+        return this.updatedAt?.let { ISODate().dateTimeFormatterSimple.parse(it) }
+    }
+
+    fun getCreatedAtDate(): Date? {
+        return this.createdAt?.let { ISODate().dateTimeFormatterSimple.parse(it) }
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    private fun getPassedDay(): Long {
+        if (this.updatedAt == null) {
+
+            if (this.createdAt == null) {
+                this.createdAt = ISODate().getFormattedCurrentTime()
+            }
+
+            this.updatedAt = this.createdAt
+        }
+
+        val nowDate =
+            LocalDateTime.parse(ISODate().getFormattedCurrentTime(), ISODate().dateTimeFormatter)
+
+        val startDate =
+            LocalDateTime.parse(this.updatedAt, ISODate().dateTimeFormatter)
+
+        return ChronoUnit.DAYS.between(startDate, nowDate)
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    public fun evaluate(): Boolean {
+        val passedDay = this.getPassedDay()
+        println("Evaluating ${this.name} Passed Days: ${passedDay.toString()}")
+        if (passedDay > 0) {
+
+            if (this.isCompleted) {
+                this.streak += 1
+                this.totalCompleted += 1
+                this.updateMaxStreak()
+                this.isCompleted = false
+
+            } else {
+                this.streak = 0
+            }
+
+            this.targetCount += this.targetNum
+
+            this.setUpdatedTime()
+
+            return true
+        }
+        return false
+    }
 }

@@ -9,7 +9,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-@Database(entities = [(Progress::class)], version = 2)
+@Database(entities = [(Progress::class)], version = 4)
 abstract class ProgressDatabase : RoomDatabase() {
 
     abstract fun progressDao(): ProgressDao
@@ -69,10 +69,10 @@ abstract class ProgressDatabase : RoomDatabase() {
             // Not needed if you only populate on creation.
             progressDao.deleteAll()
 
-            var progress = Progress("Hello")
+            var progress = Progress("Hello", createdAt = "2020-06-19 14:57:14.283+0800")
             progressDao.insert(progress)
 
-            progress = Progress("World!", period = 1, description = "aaaa")
+            progress = Progress("World!", period = 1, description = "aaaa", createdAt = "2020-06-21 14:57:14.283+0800", isCompleted = true)
             progressDao.insert(progress)
         }
     }
