@@ -69,7 +69,16 @@ class Progress {
         targetCompleted: Int = 1,
         createdAt: String? = null,
         updatedAt: String? = null,
-        isCompleted: Boolean = false
+        isCompleted: Boolean = false,
+        currentCompleted: Int = 0,
+        exp: Int = 0,
+        streak: Int = 0,
+        maxStreak: Int = 0,
+        passedPeriod: Int = 0,
+        passedDayInPeriod: Int = 0,
+        totalCompleted: Int = 0,
+        count: Int = 0,
+        currentNum: Int = 0
     ) {
         this.name = name
         this.id = 0
@@ -77,25 +86,25 @@ class Progress {
         this.description = description
 
         this.level = 0
-        this.exp = 0
+        this.exp = exp
 
-        this.streak = 0
-        this.maxStreak = 0
+        this.streak = streak
+        this.maxStreak = maxStreak
 
         this.period = period
-        this.passedPeriod = 0
-        this.passedDayInPeriod = 0
-        this.currentCompleted = 0
+        this.passedPeriod = passedPeriod
+        this.passedDayInPeriod = passedDayInPeriod
+        this.currentCompleted = currentCompleted
 
         this.isCompleted = isCompleted
-        this.totalCompleted = 0
+        this.totalCompleted = totalCompleted
         this.targetCompleted = targetCompleted
 
         this.useTargetNum = useTargetNum
         this.targetNum = targetNum
-        this.currentNum = 0
-        this.count = 0
-        this.targetCount = targetNum * targetCompleted
+        this.currentNum = currentNum
+        this.count = count
+        this.targetCount = targetNum * targetCompleted * passedPeriod
 
         this.createdAt = createdAt
         this.updatedAt = updatedAt
@@ -343,7 +352,7 @@ class Progress {
     @RequiresApi(Build.VERSION_CODES.O)
     public fun evaluate(): Boolean {
         val passedDay = this.getPassedDay()
-        println("Evaluating ${this.name} Passed Days: ${passedDay.toString()}")
+
         if (passedDay > 0) {
             if (this.useTargetNum && this.targetNum > 0) {
                 this.isCompleted = this.currentNum >= this.targetNum
@@ -351,50 +360,39 @@ class Progress {
             if (passedDay > 1) {
                 //passedDay > 1
                 if (this.isCompleted) {
-                    this.streak = 0
-                    this.totalCompleted += 1
                     this.currentCompleted += 1
                     this.isCompleted = false
-                } else {
-                    this.streak = 0
                 }
                 this.currentNum = 0
                 this.passedDayInPeriod += passedDay.toInt()
-                this.count += this.count
             } else {
                 //passedDay = 1
                 if (this.isCompleted) {
-                    this.streak += 1
-                    this.totalCompleted += 1
                     this.currentCompleted += 1
                     this.updateMaxStreak()
                     this.isCompleted = false
-                } else {
-                    this.streak = 0
                 }
 
                 this.currentNum = 0
-                this.count += this.count
                 this.passedDayInPeriod += 1
             }
+
+            this.count += this.currentNum
 
             //calculate exp and level
             if (this.passedDayInPeriod >= this.period) {
 
                 //exp get upgraded!
                 if (this.currentCompleted >= this.targetCompleted) {
-                    this.exp += this.period
+                    this.totalCompleted += 1
+                    streak += 1
 
-                    //level get upgraded!
-                    if (this.exp >= 1) {
-                        val levelupgrade: Int = this.exp.toInt() / 1
-                        for (i in 1..levelupgrade) {
-                            this.level++
-                        }
-                    }
+                } else {
+                    this.streak = 0
                 }
-                val passedDayjudge : Int = this.passedDayInPeriod/period
-                for(i in 1..passedDayjudge){
+
+                val passedDayjudge: Int = this.passedDayInPeriod / period
+                for (i in 1..passedDayjudge) {
                     this.passedPeriod += 1
                 }
                 this.passedDayInPeriod = 0
@@ -403,6 +401,17 @@ class Progress {
                     (this.targetNum * this.passedPeriod * this.targetCompleted).toInt()
             }
 
+            this.exp = this.period * this.totalCompleted
+
+            //level get upgraded!
+            if (this.exp >= 1) {
+                val levelupgrade: Int = this.exp.toInt() / 1
+                for (i in 1..levelupgrade) {
+                    this.level++
+                }
+            }
+
+            println("Evaluating ${this.name} Passed Days: ${passedDay.toString()} ${this.totalCompleted} ${this.period}")
             this.setUpdatedTime()
             return true
         }
