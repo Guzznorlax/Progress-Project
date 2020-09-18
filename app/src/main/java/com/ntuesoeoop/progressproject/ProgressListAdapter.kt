@@ -20,8 +20,9 @@ class ProgressListAdapter internal constructor(
     progressStatusUpdateListener: ProgressStatusUpdateListener
 ) :
     RecyclerView.Adapter<ProgressListAdapter.ProgressViewHolder>() {
-    private var context : Context = context
 
+    //make context available for toast
+    private var context : Context = context
     fun ProgressListAdapter(context: Context){
         this.context = context
     }
@@ -29,8 +30,11 @@ class ProgressListAdapter internal constructor(
         Toast.makeText(context, message, Toast.LENGTH_LONG).show()
     }
 
+
     private val inflater: LayoutInflater = LayoutInflater.from(context)
     private var progresses = emptyList<Progress>()
+
+    //return the values that has changed to firstfragment
     private val progressStatusUpdateListener: ProgressStatusUpdateListener =
         progressStatusUpdateListener
 
@@ -38,6 +42,7 @@ class ProgressListAdapter internal constructor(
         fun onProgressStatusUpdated(progress: Progress)
     }
 
+    //get component by id
     inner class ProgressViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         val titleTextView: TextView = itemView.findViewById(R.id.text_view_progress_title)
@@ -102,6 +107,7 @@ class ProgressListAdapter internal constructor(
             println("$progressName Simple mode")
         }
 
+
         //set whether it is completed
         holder.isCompleted.setOnClickListener {
 
@@ -111,6 +117,7 @@ class ProgressListAdapter internal constructor(
             } else {
                 current.setIsCompleted(false)
             }
+
             setProgress(progresses)
             progressStatusUpdateListener.onProgressStatusUpdated(current)
         }
@@ -161,20 +168,6 @@ class ProgressListAdapter internal constructor(
         holder.countTextView.text = current.getCompletedRatio()
         holder.isCompleted.isChecked = current.getIsCompleted()
         holder.currentNumber.setText(current.getCurrentNum().toString())
-
-        //set whether it is completed
-        holder.isCompleted.setOnClickListener {
-
-            if (holder.isCompleted.isChecked) {
-                current.setIsCompleted(true)
-                showToast("Mission Completed! Good Job!")
-            } else {
-                current.setIsCompleted(false)
-            }
-
-            setProgress(progresses)
-            progressStatusUpdateListener.onProgressStatusUpdated(current)
-        }
 
     }
 

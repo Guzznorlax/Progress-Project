@@ -61,6 +61,7 @@ class CreateProgressFragment : Fragment() {
         }
 
 
+        // get the inpput value of the createpage, and return to firstfragment
         view.findViewById<Button>(R.id.button_create_progress).setOnClickListener {
 
             var titleTextInputLayout =

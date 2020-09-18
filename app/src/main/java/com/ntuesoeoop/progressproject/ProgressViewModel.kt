@@ -1,6 +1,8 @@
 package com.ntuesoeoop.progressproject
 
 import android.app.Application
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
@@ -33,6 +35,7 @@ class ProgressViewModel(application: Application) : AndroidViewModel(application
         repo.deleteAll()
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     fun evaluateAll() = viewModelScope.launch(Dispatchers.IO) {
         allProgresses.value?.forEach {
             it.evaluate()
